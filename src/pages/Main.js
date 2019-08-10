@@ -17,27 +17,16 @@ export default function Main(){
                 </Link>
             </header>
             <div class="container">
-                <ul>
-                    <li>
-                        <div className="box-search">
-                            <h1>O que você esta procurando ?</h1>
-                            <label>
-                                <button>Alugar</button>
-                                <button>Comprar</button>
-                            </label>
-                            <h1>Em qual local ?</h1>
-                            <select>
-                                <option hidden>Selecione</option>
-                            </select>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="box-text">
-                            <h1>Busque pelos melhores imóveis da região.</h1>
-                            <p>Imóveis selecionados com alto padrão de qualidade e com a faixa de preço que cabe no seu bolso.</p>
-                        </div>
-                    </li>
-                </ul>
+                <h1>Busque pelos melhores imóveis da região.</h1>
+                <div className="box-search">
+                    <h1>O que você está procurando?</h1>
+                    <label>
+                        <button class="btn-desabled">Comprar</button>
+                        <button class="btn-desabled">Alugar</button>
+                    </label><br/>
+                    <button class="btn">Buscar</button>
+                </div>
+                <p>Imóveis selecionados com alto padrão de qualidade e com a faixa de preço que cabe no seu bolso.</p>
             </div>
         </main>
     );
