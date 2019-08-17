@@ -1,18 +1,20 @@
 nav{
-    z-index: 1;
     width: 100vw;
-    position: fixed;
-    padding: 35px;
+    padding: 20px;
     background: white;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.logo{
+    width: 100px;
 }
 
 nav .search ul{
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px;
-    margin-top: 10px;
+    grid-gap: 20px;
+    margin-top: 5px;
 }
 
 nav .search ul li{
@@ -20,4 +22,76 @@ nav .search ul li{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+nav .search ul li label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+nav .search ul li label select{
+    padding: 5px 14px;
+    margin-left: 5px;
+    border-radius: 3px;
+    width: 200px;
+    margin-top: 5px;
+}
+
+.no-border{
+    border: none;
+}
+
+.icone{
+    max-height: 35px;
+}
+
+.btn1{
+    background: transparent;
+    padding: 5px 12px;
+    border: none;
+    margin: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btn1:hover{
+    background: #fcf512;
+}
+
+.btn2{
+    background: transparent;
+    padding: 5px 12px;
+    border: none;
+    margin: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btn2:hover{
+    background: #fcf512;
+}
+
+.main{
+    max-width: 990px;
+    margin: 0 auto;
+    padding: 50px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon-min{
+    height: 30px;
+}
+
+.product{
+    width: 700px;
+    min-width: 280px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+
 }
