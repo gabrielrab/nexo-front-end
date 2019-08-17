@@ -1,5 +1,23 @@
 nav{
-    padding: 20px;
+    z-index: 1;
+    width: 100vw;
+    position: fixed;
+    padding: 35px;
     background: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
+nav .search ul{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    margin-top: 10px;
+}
+
+nav .search ul li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
