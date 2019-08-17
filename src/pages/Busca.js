@@ -23,7 +23,7 @@ export default function Busca() {
         <div className="search">
           <ul>
             <li>
-              O que você está procurando ? {`teste ${text}`}
+              O que você está procurando ?
               <br />
               <label className="buttons">
                 <button className="btn1">Alugar</button>
@@ -54,6 +54,10 @@ export default function Busca() {
                 <img src={bed} alt="Quartos" className="icone" />
                 <select className="no-border">
                   <option>Selecione</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
                 </select>
               </label>
             </li>
@@ -63,6 +67,9 @@ export default function Busca() {
                 <img src={car} alt="Carro" className="icone" />
                 <select className="no-border">
                   <option>Selecione</option>
+                  <option>2</option>
+                  <option>4</option>
+                  <option>5</option>
                 </select>
               </label>
             </li>
@@ -80,15 +87,21 @@ export default function Busca() {
       </nav>
       <div className="main">
         <div className="product">
-          <img src="" alt="" />
-          <div>
+          <div className="content-img">
+            <img
+              src="https://resizedimgs.zapimoveis.com.br/fit-in/800x360/vr.images.sp/8a24dc1f91093fd507b2a0d919379408.jpg"
+              alt=""
+              className="img-product"
+            />
+          </div>
+          <div className="content-infos">
             <div className="infos">
               <span>
                 <b>Casa Alto Padrão</b>
                 <br />
                 B. Viória - Carmo do Cajuru
               </span>
-              <b>1000,00</b>
+              <label className="price">R$ 10000,00</label>
             </div>
             <div className="skills">
               <ul>
