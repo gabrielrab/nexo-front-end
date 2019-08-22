@@ -9,8 +9,6 @@ import car from "../assets/car.svg";
 import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
 
-let text = "aqui";
-
 export default function Busca() {
   return (
     <div>
