@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./Create.css";
 
@@ -7,7 +8,9 @@ import logo from "../assets/logo.svg";
 export default function() {
   return (
     <div className="create-container">
-      <img src={logo} alt="Nexo" />
+      <Link to="/">
+        <img src={logo} alt="Nexo" />
+      </Link>
       <h1>Criar Anúncio</h1>
       <form>
         <input name="label" placeholder="Titulo" />
