@@ -78,3 +78,4 @@ main .container{
     background: #fcf512;
     border: none;
 }
+@media screen and (max-width: 767px) and (min-width: 300px) {}

@@ -22,11 +22,8 @@ export default function Busca() {
           <ul>
             <li>
               O que você está procurando ?
-              <br />
-              <label className="buttons">
-                <button className="btn1">Alugar</button>
-                <button className="btn1">Comprar</button>
-              </label>
+              <button className="btn1">Alugar</button>
+              <button className="btn1">Comprar</button>
             </li>
 
             <li>
