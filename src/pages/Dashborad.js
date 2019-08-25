@@ -31,6 +31,22 @@ export default function() {
             </Link>
           </div>
         </div>
+
+        <div className="box">
+          <span>#0001</span>
+          <h3>Casa Alto Padrão</h3>
+          <p>B. Vitória - Carmo do Cajuru</p>
+          <br />
+          <label>Adicionado em: 24/08/2019</label>
+          <div>
+            <Link to="/">
+              <button className="btn-das">Editar</button>
+            </Link>
+            <Link to="/">
+              <button className="btn-das">Remover</button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

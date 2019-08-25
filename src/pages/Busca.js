@@ -48,7 +48,7 @@ export default function Busca() {
               <label>
                 <img src={bed} alt="Quartos" className="icone" />
                 <select className="no-border">
-                  <option>Selecione</option>
+                  <option>Quartos</option>
                   <option>2</option>
                   <option>3</option>
                   <option>4</option>
@@ -61,7 +61,7 @@ export default function Busca() {
               <label>
                 <img src={car} alt="Carro" className="icone" />
                 <select className="no-border">
-                  <option>Selecione</option>
+                  <option>Vagas</option>
                   <option>2</option>
                   <option>4</option>
                   <option>5</option>
@@ -73,7 +73,7 @@ export default function Busca() {
               <label>
                 <img src={fullsize} alt="Tamanho" className="icone" />
                 <select className="no-border">
-                  <option>Seleciona</option>
+                  <option>Tamanho</option>
                 </select>
               </label>
             </li>

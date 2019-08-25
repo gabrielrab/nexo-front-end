@@ -6,6 +6,7 @@ import Busca from "./pages/Busca";
 import Login from "./pages/Login";
 import Create from "./pages/Create";
 import Dashborad from "./pages/Dashborad";
+import Product from "./pages/Product";
 
 export default function Routes() {
   return (
@@ -15,6 +16,7 @@ export default function Routes() {
       <Route path="/login" component={Login} />
       <Route path="/create" component={Create} />
       <Route path="/dashboard" component={Dashborad} />
+      <Route path="/product" component={Product} />
     </BrowserRouter>
   );
 }
