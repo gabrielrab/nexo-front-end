@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import "./Busca.css";
 
+import api from "../services/api";
+
 //Imagens
 import logo from "../assets/logo.svg";
 import car from "../assets/car.svg";
