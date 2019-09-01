@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 
 import "./Busca.css";
@@ -12,6 +12,17 @@ import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
 
 export default function Busca() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(()=>{
+    async function loadUser(){
+      const response = await api.get("/product");
+      setProducts(response.data.product);
+    }
+    loadUser();
+  }, []);
+
+  console.log(products);
   return (
     <div>
       <nav>
@@ -82,41 +93,45 @@ export default function Busca() {
           </ul>
         </div>
       </nav>
+      {products.length > 0 ? (
       <div className="main">
-        <div className="product">
-          <div className="content-img">
-            <img
-              src="https://resizedimgs.zapimoveis.com.br/fit-in/800x360/vr.images.sp/8a24dc1f91093fd507b2a0d919379408.jpg"
-              alt=""
-              className="img-product"
-            />
-          </div>
-          <div className="content-infos">
-            <div className="infos">
-              <span>
-                <b>Casa Alto Padrão</b>
-                <br />
-                B. Viória - Carmo do Cajuru
-              </span>
-              <label className="price">R$ 10000,00</label>
+        {products.map(product=>(
+            <div className="product" key={product._id}>
+            <div className="content-img">
+              <img
+                src={product.url}
+                alt=""
+                className="img-product"
+              />
             </div>
-            <div className="skills">
-              <ul>
-                <li>
-                  <img src={bed} alt="bed-value" className="icon-min" /> 5
-                </li>
-                <li>
-                  <img src={car} alt="bed-value" className="icon-min" /> 2
-                </li>
-                <li>
-                  <img src={fullsize} alt="bed-value" className="icon-min" /> 24
-                  m²
-                </li>
-              </ul>
+            <div className="content-infos">
+              <div className="infos">
+                <span>
+                  <b>Casa Alto Padrão</b>
+                  <br />
+                  B. Viória - Carmo do Cajuru
+                </span>
+                <label className="price">R$ {product.price},00</label>
+              </div>
+              <div className="skills">
+                <ul>
+                  <li>
+                    <img src={bed} alt="bed-value" className="icon-min" /> 5
+                  </li>
+                  <li>
+                    <img src={car} alt="bed-value" className="icon-min" /> 2
+                  </li>
+                  <li>
+                    <img src={fullsize} alt="bed-value" className="icon-min" /> 24
+                    m²
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
+      ) : (<div>Acabou</div>)}
     </div>
   );
 }
