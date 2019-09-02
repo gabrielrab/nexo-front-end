@@ -110,6 +110,7 @@ nav .search ul li label select{
     margin-bottom: 15px;
 }
 .img-product{
+    width: 200px;
     height: 100%;
 }
 
@@ -156,6 +157,15 @@ nav .search ul li label select{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.empty{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "./Busca.css";
@@ -14,8 +14,8 @@ import fullsize from "../assets/full-size.svg";
 export default function Busca() {
   const [products, setProducts] = useState([]);
 
-  useEffect(()=>{
-    async function loadUser(){
+  useEffect(() => {
+    async function loadUser() {
       const response = await api.get("/product");
       setProducts(response.data.product);
     }
@@ -27,7 +27,7 @@ export default function Busca() {
     <div>
       <nav>
         <div className="nav-logo">
-          <Link to="/login">
+          <Link to="/">
             <img src={logo} alt="Nexo Imobiliária" className="logo" />
           </Link>
         </div>
@@ -94,44 +94,56 @@ export default function Busca() {
         </div>
       </nav>
       {products.length > 0 ? (
-      <div className="main">
-        {products.map(product=>(
+        <div className="main">
+          {products.map(product => (
             <div className="product" key={product._id}>
-            <div className="content-img">
-              <img
-                src={product.url}
-                alt=""
-                className="img-product"
-              />
-            </div>
-            <div className="content-infos">
-              <div className="infos">
-                <span>
-                  <b>Casa Alto Padrão</b>
-                  <br />
-                  B. Viória - Carmo do Cajuru
-                </span>
-                <label className="price">R$ {product.price},00</label>
+              <div className="content-img">
+                <img
+                  src={product.imagesURL[0].url}
+                  alt=""
+                  className="img-product"
+                />
               </div>
-              <div className="skills">
-                <ul>
-                  <li>
-                    <img src={bed} alt="bed-value" className="icon-min" /> 5
-                  </li>
-                  <li>
-                    <img src={car} alt="bed-value" className="icon-min" /> 2
-                  </li>
-                  <li>
-                    <img src={fullsize} alt="bed-value" className="icon-min" /> 24
-                    m²
-                  </li>
-                </ul>
+              <div className="content-infos">
+                <div className="infos">
+                  <span>
+                    <b>{product.label}</b>
+                    <br />
+                    B. {product.district} - {product.city}
+                  </span>
+                  <label className="price">R$ {product.price},00</label>
+                </div>
+                <div className="skills">
+                  <ul>
+                    <li>
+                      <img src={bed} alt="bed-value" className="icon-min" />
+                      {product.bedrooms}
+                    </li>
+                    <li>
+                      <img src={car} alt="bed-value" className="icon-min" />
+                      {product.parkingSpaces}
+                    </li>
+                    <li>
+                      <img
+                        src={fullsize}
+                        alt="bed-value"
+                        className="icon-min"
+                      />
+                      {product.size} m²
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      ) : (<div>Acabou</div>)}
+          ))}
+        </div>
+      ) : (
+        <div className="empty">
+          Acabou.
+          <br />
+          Tente redefinir a busca.
+        </div>
+      )}
     </div>
   );
 }
