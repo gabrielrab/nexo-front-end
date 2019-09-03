@@ -25,16 +25,25 @@ export default function Product({ match }) {
   }, []);
 
   const { imagesURL } = product;
-  console.log(imagesURL); //Retorna o objeto corretamente
+  //console.log(imagesURL.length);
+  // const [img, setImg] = useState([]);
+  // useEffect(() => {
+  //   function loadImg() {
+  //     setImg(product.imagesURL);
+  //   }
+  //   loadImg();
+  // }, []);
+  // console.log(img);
+  //const { imagesURL } = product;
+  // console.log(imagesURL); //Retorna o objeto corretamente
+
   console.log(imagesURL && imagesURL.length); //TypeError: Cannot read property '0' of undefined
-  let len = imagesURL;
-  const arr = [];
-  for (let i = 0; i < imagesURL.length; i++) {
-    arr.push({ url: imagesURL[i].url });
-  }
-  console.log(arr);
+
+  //aqui da erro
+  //let i = imagesURL && imagesURL.length;
+
   return (
-    <div class="content">
+    <div className="content">
       <nav className="nav">
         <Link to="/">
           <img src={logo} alt="Nexo" className="logo" />
@@ -42,6 +51,7 @@ export default function Product({ match }) {
         <p>Os melhores imóveis para você!</p>
       </nav>
       <AwesomeSlider className="slide">
+        <div data-src="https://img.olx.com.br/images/19/191923007391584.jpg" />
         <div data-src="https://img.olx.com.br/images/19/191923007391584.jpg" />
       </AwesomeSlider>
       <section className="content-description">
