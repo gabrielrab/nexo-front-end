@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
@@ -10,8 +10,29 @@ import logo from "../assets/logo.svg";
 import car from "../assets/car.svg";
 import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
+import api from "../services/api";
 
-export default function() {
+export default function Product({ match }) {
+  const { id } = match.params;
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    async function loadProduct() {
+      const response = await api.get(`/product/${id}`);
+      setProduct(response.data.product);
+    }
+    loadProduct();
+  }, []);
+
+  const { imagesURL } = product;
+  console.log(imagesURL); //Retorna o objeto corretamente
+  console.log(imagesURL && imagesURL.length); //TypeError: Cannot read property '0' of undefined
+  let len = imagesURL;
+  const arr = [];
+  for (let i = 0; i < imagesURL.length; i++) {
+    arr.push({ url: imagesURL[i].url });
+  }
+  console.log(arr);
   return (
     <div class="content">
       <nav className="nav">
@@ -21,37 +42,36 @@ export default function() {
         <p>Os melhores imóveis para você!</p>
       </nav>
       <AwesomeSlider className="slide">
-        <div data-src="https://img.olx.com.br/images/91/915905031701995.jpg" />
         <div data-src="https://img.olx.com.br/images/19/191923007391584.jpg" />
       </AwesomeSlider>
       <section className="content-description">
         <div className="description-header">
           <label>
-            <h1>Casa de Alto Padrão</h1>
-            <span className="cinza">B. Vitória Carmo do Cajuru</span>
+            <h1>
+              {product.label} - <i>{product.option}</i>
+            </h1>
+            <span className="cinza">
+              B. {product.district} - {product.city}
+            </span>
           </label>
 
-          <label className="price">R$ 10000,00</label>
+          <label className="price">R$ {product.price},00</label>
         </div>
 
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged.
-        </p>
+        <p>{product.description}</p>
         <div className="skills">
           <ul>
             <li>
-              <img src={bed} alt="bed-value" className="icon-min" /> 5
+              <img src={bed} alt="bed-value" className="icon-min" />{" "}
+              {product.bedrooms}
             </li>
             <li>
-              <img src={car} alt="bed-value" className="icon-min" /> 2
+              <img src={car} alt="bed-value" className="icon-min" />{" "}
+              {product.parkingSpaces}
             </li>
             <li>
-              <img src={fullsize} alt="bed-value" className="icon-min" /> 24 m²
+              <img src={fullsize} alt="bed-value" className="icon-min" />{" "}
+              {product.size} m²
             </li>
           </ul>
         </div>

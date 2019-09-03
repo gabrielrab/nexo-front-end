@@ -16,7 +16,7 @@ export default function Routes() {
       <Route path="/login" component={Login} />
       <Route path="/create" component={Create} />
       <Route path="/dashboard" component={Dashborad} />
-      <Route path="/product" component={Product} />
+      <Route path="/product/:id" component={Product} />
     </BrowserRouter>
   );
 }

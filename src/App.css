@@ -3,6 +3,7 @@
   padding: 0;
   outline: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 input, select{
@@ -11,6 +12,9 @@ input, select{
   appearance: none;
 }
 
+a{
+  text-decoration-color: black; 
+}
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
 
 html, body, #root {

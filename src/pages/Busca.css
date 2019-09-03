@@ -141,6 +141,7 @@ nav .search ul li label select{
 
 .content-infos .infos .price{
     background: #fcf512;
+    color: black;
     padding: 8px;
     font-size: 23px;
     border-radius: 4px;
@@ -157,6 +158,7 @@ nav .search ul li label select{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }
 
 .empty{
