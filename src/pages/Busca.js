@@ -141,9 +141,9 @@ export default function Busca() {
         </div>
       ) : (
         <div className="empty">
-          Acabou.
+          Aguarde.
           <br />
-          Tente redefinir a busca.
+          Ou tente redefinir a busca.
         </div>
       )}
     </div>

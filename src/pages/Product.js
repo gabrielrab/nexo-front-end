@@ -23,7 +23,7 @@ export default function Product({ match }) {
       setProduct(data.product);
     }
     loadProduct();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (product && product._id) {
@@ -32,7 +32,14 @@ export default function Product({ match }) {
     }
   }, [product]);
 
-  console.log(images);
+  const url = [];
+  if (images.length !== 0) {
+    for (let i = 0; i < images.length; i++) {
+      url.push(images[i].url);
+    }
+  }
+  console.log(url);
+
   return (
     <div className="content">
       <nav className="nav">
@@ -41,12 +48,15 @@ export default function Product({ match }) {
         </Link>
         <p>Os melhores imóveis para você!</p>
       </nav>
-      <AwesomeSlider className="slide">
-        {images &&
-          images.map((image, index) => (
-            <div data-src={image.url} key={index} />
+      {images.length > 0 ? (
+        <AwesomeSlider className="slide">
+          {url.map((image, index) => (
+            <div data-src={image} key={index} />
           ))}
-      </AwesomeSlider>
+        </AwesomeSlider>
+      ) : (
+        <p>Aguarde</p>
+      )}
       <section className="content-description">
         <div className="description-header">
           <label>
