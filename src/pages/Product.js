@@ -15,33 +15,24 @@ import api from "../services/api";
 export default function Product({ match }) {
   const { id } = match.params;
   const [product, setProduct] = useState([]);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     async function loadProduct() {
-      const response = await api.get(`/product/${id}`);
-      setProduct(response.data.product);
+      const { data } = await api.get(`/product/${id}`);
+      setProduct(data.product);
     }
     loadProduct();
   }, []);
 
-  const { imagesURL } = product;
-  //console.log(imagesURL.length);
-  // const [img, setImg] = useState([]);
-  // useEffect(() => {
-  //   function loadImg() {
-  //     setImg(product.imagesURL);
-  //   }
-  //   loadImg();
-  // }, []);
-  // console.log(img);
-  //const { imagesURL } = product;
-  // console.log(imagesURL); //Retorna o objeto corretamente
+  useEffect(() => {
+    if (product && product._id) {
+      const response = product.imagesURL;
+      setImages(response);
+    }
+  }, [product]);
 
-  console.log(imagesURL && imagesURL.length); //TypeError: Cannot read property '0' of undefined
-
-  //aqui da erro
-  //let i = imagesURL && imagesURL.length;
-
+  console.log(images);
   return (
     <div className="content">
       <nav className="nav">
@@ -51,8 +42,10 @@ export default function Product({ match }) {
         <p>Os melhores imóveis para você!</p>
       </nav>
       <AwesomeSlider className="slide">
-        <div data-src="https://img.olx.com.br/images/19/191923007391584.jpg" />
-        <div data-src="https://img.olx.com.br/images/19/191923007391584.jpg" />
+        {images &&
+          images.map((image, index) => (
+            <div data-src={image.url} key={index} />
+          ))}
       </AwesomeSlider>
       <section className="content-description">
         <div className="description-header">
