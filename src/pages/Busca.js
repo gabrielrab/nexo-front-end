@@ -22,7 +22,6 @@ export default function Busca() {
     loadProducts();
   }, []);
 
-  console.log(products);
   return (
     <div>
       <nav>
