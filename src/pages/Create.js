@@ -12,7 +12,7 @@ export default function() {
 
   async function enviarProduto() {
     console.log("click");
-    const response = await api.post("/product", values);
+    //const response = await api.post("/product", values);
     debugger;
     console.log(values);
   }
@@ -30,64 +30,49 @@ export default function() {
           onChange={handleChange}
           required
         />
-        <select name="option" onChange={handleChange} required>
+        <select name="option" onChange={handleChange}>
           <option hidden>Tipo</option>
           <option value="alugar">Alugar</option>
           <option value="comprar">Comprar</option>
         </select>
-        <select name="category" onChange={handleChange} required>
+        <select name="category" onChange={handleChange}>
           <option hidden>Categoria</option>
           <option>Casa</option>
           <option>Apartamento</option>
           <option>Lote</option>
         </select>
-        <input
-          name="city"
-          placeholder="Cidade"
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="district"
-          placeholder="Bairro"
-          onChange={handleChange}
-          required
-        />
+        <input name="city" placeholder="Cidade" onChange={handleChange} />
+        <input name="district" placeholder="Bairro" onChange={handleChange} />
         <input
           type="number"
           name="bedrooms"
           placeholder="Quartos"
           onChange={handleChange}
-          required
         />
         <input
           type="number"
           name="parkingSpaces"
           placeholder="Espaços na garagem"
           onChange={handleChange}
-          required
         />
         <input
           type="number"
           name="size"
           placeholder="Tamanho"
           onChange={handleChange}
-          required
         />
         <textarea
           name="description"
           placeholder="Descrição"
           onChange={handleChange}
-          required
         />
         <input
           type="number"
           name="price"
           placeholder="Preço"
           onChange={handleChange}
-          required
         />
-        <input type="file" name="file" multiple />
+        <input type="file" name="img" multiple onChange={handleChange} />
         <button className="btn" type="submit">
           {loading ? "Enviando..." : "Enviar"}
         </button>

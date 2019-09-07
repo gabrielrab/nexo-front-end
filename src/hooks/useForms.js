@@ -7,10 +7,12 @@ const useForm = callback => {
   const handleChange = event => {
     const auxValues = { ...values };
     auxValues[event.target.name] = event.target.value;
+    console.log(event);
     setValues(auxValues);
   };
   const handleSubmit = callback => event => {
     event.preventDefault();
+
     setLoading(true);
     callback();
     setLoading(false);
