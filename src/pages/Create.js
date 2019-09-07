@@ -12,8 +12,10 @@ export default function() {
 
   async function enviarProduto() {
     console.log("click");
-    //const response = await api.post("/product", values);
-    debugger;
+    // const response = await api.post("/product", values).then(res => {
+    //   console.log("/Erro");
+    // });
+    // debugger;
     console.log(values);
   }
 
