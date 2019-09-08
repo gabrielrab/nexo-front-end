@@ -8,7 +8,7 @@ const useForm = callback => {
     const auxValues = { ...values };
 
     auxValues[event.target.name] = event.target.value;
-    auxValues["img"] = event.target.files;
+    //auxValues["img"] = event.target.files;
     setValues(auxValues);
   };
 
@@ -16,6 +16,7 @@ const useForm = callback => {
 
   const handleSubmit = callback => event => {
     event.preventDefault();
+
     setLoading(true);
     callback();
     setLoading(false);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Create.css";
@@ -9,15 +9,31 @@ import logo from "../assets/logo.svg";
 
 export default function() {
   const [{ values, loading }, handleChange, handleSubmit] = useForm();
+  const [file, setFile] = useState({});
 
-  async function enviarProduto() {
-    console.log("click");
-    // const response = await api.post("/product", values).then(res => {
-    //   console.log("/Erro");
-    // });
-    // debugger;
-    console.log(values);
-  }
+  const handleChangeImages = async event => {
+    //setFile(event.target.files);
+    setFile(event.target.files);
+  };
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    const formData = new FormData();
+    debugger;
+    let i;
+    for (i = 0; i < file.length; i++) {
+      formData.append("file", file[i]);
+    }
+    debugger;
+    //formData.append("file", file[1]);
+
+    try {
+      const res = await api.post("/storage", formData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="create-container">
@@ -25,13 +41,8 @@ export default function() {
         <img src={logo} alt="Nexo" />
       </Link>
       <h1>Criar Anúncio</h1>
-      <form onSubmit={handleSubmit(enviarProduto)}>
-        <input
-          name="label"
-          placeholder="Titulo"
-          onChange={handleChange}
-          required
-        />
+      <form onSubmit={onSubmit}>
+        <input name="label" placeholder="Titulo" onChange={handleChange} />
         <select name="option" onChange={handleChange}>
           <option hidden>Tipo</option>
           <option value="alugar">Alugar</option>
@@ -74,7 +85,12 @@ export default function() {
           placeholder="Preço"
           onChange={handleChange}
         />
-        <input type="file" name="img" multiple onChange={handleChange} />
+        <input
+          type="file"
+          name="file[]"
+          multiple
+          onChange={handleChangeImages}
+        />
         <button className="btn" type="submit">
           {loading ? "Enviando..." : "Enviar"}
         </button>
