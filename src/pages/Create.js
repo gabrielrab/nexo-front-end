@@ -8,32 +8,41 @@ import useForm from "../hooks/useForms";
 import logo from "../assets/logo.svg";
 
 export default function() {
-  const [{ values, loading }, handleChange, handleSubmit] = useForm();
-  const [file, setFile] = useState({});
-
-  const handleChangeImages = async event => {
-    //setFile(event.target.files);
-    setFile(event.target.files);
-  };
+  const [
+    { values, file },
+    handleChange,
+    handleSubmit,
+    handleChangeImages
+  ] = useForm();
 
   const onSubmit = async e => {
     e.preventDefault();
+  };
+
+  async function enviarProduto() {
     const formData = new FormData();
-    debugger;
     let i;
     for (i = 0; i < file.length; i++) {
       formData.append("file", file[i]);
     }
-    debugger;
-    //formData.append("file", file[1]);
+    formData.append("label", values["label"]);
+    formData.append("option", values["option"]);
+    formData.append("category", values["category"]);
+    formData.append("city", values["city"]);
+    formData.append("district", values["district"]);
+    formData.append("bedrooms", values["bedrooms"]);
+    formData.append("parkingSpaces", values["parkingSpaces"]);
+    formData.append("size", values["size"]);
+    formData.append("description", values["description"]);
+    formData.append("price", values["price"]);
 
     try {
-      const res = await api.post("/storage", formData);
-      console.log(res);
+      const response = await api.post("/product", formData);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   return (
     <div className="create-container">
@@ -41,7 +50,7 @@ export default function() {
         <img src={logo} alt="Nexo" />
       </Link>
       <h1>Criar Anúncio</h1>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(enviarProduto)}>
         <input name="label" placeholder="Titulo" onChange={handleChange} />
         <select name="option" onChange={handleChange}>
           <option hidden>Tipo</option>
@@ -92,7 +101,7 @@ export default function() {
           onChange={handleChangeImages}
         />
         <button className="btn" type="submit">
-          {loading ? "Enviando..." : "Enviar"}
+          Enviar
         </button>
       </form>
     </div>
