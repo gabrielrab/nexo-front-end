@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Line } from "rc-progress";
 
 import "./Create.css";
 import api from "../services/api";
@@ -14,6 +17,7 @@ export default function() {
     handleSubmit,
     handleChangeImages
   ] = useForm();
+  const [loading, setLoading] = useState(0);
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -37,7 +41,20 @@ export default function() {
     formData.append("price", values["price"]);
 
     try {
-      const response = await api.post("/product", formData);
+      const response = await api
+        .post("/product", formData, {
+          onUploadProgress: ProgressEvent => {
+            setLoading((ProgressEvent.loaded / ProgressEvent.total) * 100);
+          }
+        })
+        .then(res => {
+          toast.success("Anúncio Criado!");
+        })
+        .catch(err => {
+          toast.error(
+            "Erro! Tente novamente mais tarde, ou contate o desenvolvedor"
+          );
+        });
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -51,7 +68,15 @@ export default function() {
       </Link>
       <h1>Criar Anúncio</h1>
       <form onSubmit={handleSubmit(enviarProduto)}>
-        <input name="label" placeholder="Titulo" onChange={handleChange} />
+        <div class="form-group">
+          <ToastContainer />
+        </div>
+        <input
+          name="label"
+          placeholder="Titulo"
+          onChange={handleChange}
+          required
+        />
         <select name="option" onChange={handleChange}>
           <option hidden>Tipo</option>
           <option value="alugar">Alugar</option>
@@ -100,6 +125,7 @@ export default function() {
           multiple
           onChange={handleChangeImages}
         />
+        <Line percent={loading} strokeWidth="4" strokeColor="#fcf512" />
         <button className="btn" type="submit">
           Enviar
         </button>
