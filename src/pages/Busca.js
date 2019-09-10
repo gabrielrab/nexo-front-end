@@ -12,15 +12,28 @@ import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
 
 export default function Busca() {
+  const [original, setOriginal] = useState([]);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function loadProducts() {
       const response = await api.get("/product");
       setProducts(response.data.product);
+      setOriginal(response.data.product);
     }
     loadProducts();
   }, []);
+
+  const handleChange = event => {
+    console.log("Click");
+    const { value, name } = event.target;
+    //const key = event.target.name;
+    debugger;
+    let filtered = products.filter(function(el) {
+      return el.badrooms == 3;
+    });
+    console.log(filtered);
+  };
 
   return (
     <div>
@@ -41,7 +54,7 @@ export default function Busca() {
             <li>
               Em qual local ?<br />
               <label>
-                <select>
+                <select className="no-border">
                   <option>Selecione</option>
                 </select>
               </label>
@@ -50,8 +63,15 @@ export default function Busca() {
             <li>
               O qual tipo de imóvel ?<br />
               <label>
-                <select>
-                  <option>Selecione</option>
+                <select
+                  className="no-border"
+                  name="category"
+                  onChange={handleChange}
+                >
+                  <option hidden>Selecione</option>
+                  <option>Casa</option>
+                  <option>Apartamento</option>
+                  <option>Lote</option>
                 </select>
               </label>
             </li>
@@ -59,7 +79,11 @@ export default function Busca() {
             <li>
               <label>
                 <img src={bed} alt="Quartos" className="icone" />
-                <select className="no-border">
+                <select
+                  className="no-border"
+                  name="bedrooms"
+                  onChange={handleChange}
+                >
                   <option>Quartos</option>
                   <option>2</option>
                   <option>3</option>
@@ -95,7 +119,7 @@ export default function Busca() {
       {products.length > 0 ? (
         <div className="main">
           {products.map(product => (
-            <Link to={`/product/${product._id}`}>
+            <Link to={`/product/${product._id}`} key={product._id}>
               <div className="product" key={product._id}>
                 <div className="content-img">
                   <img

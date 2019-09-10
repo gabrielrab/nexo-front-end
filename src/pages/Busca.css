@@ -109,9 +109,16 @@ nav .search ul li label select{
     flex-direction: row;
     margin-bottom: 15px;
 }
+
+.product:hover{
+    transform: translateY(-3px);
+    transition: all 0.2s;
+}
+
 .img-product{
-    width: 200px;
+    width: 210px;
     height: 100%;
+    border-radius: 4px;
 }
 
 .content-infos{
