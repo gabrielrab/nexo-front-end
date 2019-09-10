@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import api from "../services/api";
-
 const useForm = callback => {
   const [values, setValues] = useState({});
   const [file, setFile] = useState({});

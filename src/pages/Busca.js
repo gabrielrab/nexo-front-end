@@ -29,8 +29,8 @@ export default function Busca() {
     const { value, name } = event.target;
     //const key = event.target.name;
     debugger;
-    let filtered = products.filter(function(el) {
-      return el.badrooms == 3;
+    let filtered = products.filter(function(product) {
+      return product.badrooms === 3;
     });
     console.log(filtered);
   };
