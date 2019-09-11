@@ -13,7 +13,8 @@ input, select{
 }
 
 a{
-  text-decoration-color: black; 
+  text-decoration-color: black;
+  cursor: pointer;
 }
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
 

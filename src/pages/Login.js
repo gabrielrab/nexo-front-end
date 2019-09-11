@@ -20,7 +20,6 @@ export default function({ history }) {
 
       if (response.status === 200) {
         window.localStorage.setItem("TOKEN", _id);
-        debugger;
         history.push(`/dashboard`);
       } else if (response.status === 404) {
         toast.error(`O usuário não foi encontrado`);

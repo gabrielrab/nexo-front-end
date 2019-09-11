@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { formatDistance } from "date-fns";
+import pt from "date-fns/locale/pt";
 
 import "./Dashboard.css";
 import api from "../services/api";
@@ -25,6 +27,8 @@ export default function({ match, history }) {
     loadProducts();
   }, []);
 
+  console.log(products);
+
   return (
     <div className="container">
       <Link to="/">
@@ -38,13 +42,20 @@ export default function({ match, history }) {
         <div className="box-container">
           {products.map(product => (
             <div className="box" key={product._id}>
-              <span>#0001</span>
+              <span>#{product.code}</span>
               <h3>{product.title}</h3>
               <p>
                 B. {product.district} - {product.city}
               </p>
               <br />
-              <label>Adicionado em: 24/08/2019</label>
+              <p>Preco: R${product.price},00</p>
+              <br />
+              <label>
+                Criado há:{" "}
+                {formatDistance(new Date(product.createdAt), new Date(), {
+                  locale: pt
+                })}
+              </label>
               <div>
                 <Link to="/">
                   <button className="btn-das">Editar</button>

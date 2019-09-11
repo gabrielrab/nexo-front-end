@@ -38,7 +38,6 @@ export default function Product({ match }) {
       url.push(images[i].url);
     }
   }
-  console.log(url);
 
   return (
     <div className="content">
