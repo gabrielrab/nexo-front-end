@@ -8,16 +8,24 @@ import api from "../services/api";
 
 import logo from "../assets/logo.svg";
 
-export default function() {
+export default function({ history }) {
   const [user, setUser] = useState({});
 
   const handleSubmit = async event => {
-    //code here
     event.preventDefault();
     try {
       const response = await api.post("/login", user);
+
+      const { _id } = response.data.user;
+
       if (response.status === 200) {
-        alert("Okkkk");
+        window.localStorage.setItem("TOKEN", _id);
+        debugger;
+        history.push(`/dashboard`);
+      } else if (response.status === 404) {
+        toast.error(`O usuário não foi encontrado`);
+      } else if (response.status === 401) {
+        toast.error(`Senha incorreta`);
       }
     } catch (error) {
       toast.error(

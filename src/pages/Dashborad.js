@@ -14,7 +14,7 @@ async function removeProduct(id) {
   window.location.reload();
 }
 
-export default function() {
+export default function({ match, history }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
