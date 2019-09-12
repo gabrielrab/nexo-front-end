@@ -57,7 +57,7 @@ export default function({ match, history }) {
                 })}
               </label>
               <div>
-                <Link to="/">
+                <Link to={`/edit/${product._id}`}>
                   <button className="btn-das">Editar</button>
                 </Link>
                 <button

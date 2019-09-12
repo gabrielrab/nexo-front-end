@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Create from "./pages/Create";
 import Dashborad from "./pages/Dashborad";
 import Product from "./pages/Product";
+import Edit from "./pages/Edit";
 
 const PrivatedRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -33,6 +34,7 @@ export default function Routes() {
       <Route path="/login" component={Login} />
       <PrivatedRoute path="/create" component={Create} />
       <PrivatedRoute path="/dashboard" component={Dashborad} />
+      <PrivatedRoute path="/edit/:id" component={Edit} />
       <Route path="/product/:id" component={Product} />
     </BrowserRouter>
   );
