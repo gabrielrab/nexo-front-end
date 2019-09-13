@@ -5,14 +5,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./Create.css";
 import api from "../services/api";
-import useForm from "../hooks/useForms";
+//import useForm from "../hooks/useForms";
 
 import logo from "../assets/logo.svg";
 
 export default function({ match }) {
   const { id } = match.params;
   const [product, setProduct] = useState([]);
-  const [{ values }, handleChange, handleSubmit] = useForm();
+  const [values, setValues] = useState({});
+  //const [{ values }, handleChange, handleSubmit] = useForm();
 
   useEffect(() => {
     async function loadProduct() {
@@ -23,42 +24,49 @@ export default function({ match }) {
     loadProduct();
   }, [id]);
 
-  const onSubmit = async e => {
+  const onSubmited = async e => {
     e.preventDefault();
+    console.log(values);
   };
 
-  async function enviarProduto() {
-    const formData = new FormData();
-    formData.append("label", values["label"]);
-    formData.append("option", values["option"]);
-    formData.append("category", values["category"]);
-    formData.append("city", values["city"]);
-    formData.append("district", values["district"]);
-    formData.append("bedrooms", values["bedrooms"]);
-    formData.append("parkingSpaces", values["parkingSpaces"]);
-    formData.append("size", values["size"]);
-    formData.append("description", values["description"]);
-    formData.append("price", values["price"]);
+  const handleChange = event => {
+    const auxValues = { ...values };
 
-    try {
-      //#Parei na parte que tenho que enviar para o banco de dados as alteracoes ...
-      //Problema identificado = formData esta assumindo valores errados...
-      debugger;
-      const response = await api
-        .put(`/product/${id}`, formData)
-        .then(res => {
-          toast.success("Anúncio Editado!");
-        })
-        .catch(err => {
-          toast.error(
-            "Erro! Tente novamente mais tarde, ou contate o desenvolvedor"
-          );
-        });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+    auxValues[event.target.name] = event.target.value;
+    setValues(auxValues);
+  };
+  // async function enviarProduto() {
+  //   const formData = new FormData();
+  //   formData.append("label", values["label"]);
+  //   formData.append("option", values["option"]);
+  //   formData.append("category", values["category"]);
+  //   formData.append("city", values["city"]);
+  //   formData.append("district", values["district"]);
+  //   formData.append("bedrooms", values["bedrooms"]);
+  //   formData.append("parkingSpaces", values["parkingSpaces"]);
+  //   formData.append("size", values["size"]);
+  //   formData.append("description", values["description"]);
+  //   formData.append("price", values["price"]);
+
+  //   try {
+  //     //#Parei na parte que tenho que enviar para o banco de dados as alteracoes ...
+  //     //Problema identificado = formData esta assumindo valores errados...
+  //     debugger;
+  //     const response = await api
+  //       .put(`/product/${id}`, formData)
+  //       .then(res => {
+  //         toast.success("Anúncio Editado!");
+  //       })
+  //       .catch(err => {
+  //         toast.error(
+  //           "Erro! Tente novamente mais tarde, ou contate o desenvolvedor"
+  //         );
+  //       });
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   return (
     <div className="create-container">
@@ -66,7 +74,7 @@ export default function({ match }) {
         <img src={logo} alt="Nexo" />
       </Link>
       <h1>Editar Anúncio</h1>
-      <form onSubmit={handleSubmit(enviarProduto)}>
+      <form onSubmit={onSubmited}>
         <div className="form-group">
           <ToastContainer />
         </div>
@@ -77,24 +85,22 @@ export default function({ match }) {
           onChange={handleChange}
           required
         />
-        <select
-          name="option"
-          onchange={handleChange}
-          defaultValue={product.option}
-        >
+        <select name="option" onchange={handleChange}>
           <option hidden>Tipo</option>
-          <option value="alugar">Alugar</option>
-          <option value="comprar">Comprar</option>
+          <option value="alugar" selected={product.option === "alugar"}>
+            Alugar
+          </option>
+          <option value="comprar" selected={product.option === "comprar"}>
+            Comprar
+          </option>
         </select>
-        <select
-          name="category"
-          onChange={handleChange}
-          value={product.category}
-        >
+        <select name="category" onChange={handleChange}>
           <option hidden>Categoria</option>
-          <option>Casa</option>
-          <option>Apartamento</option>
-          <option>Lote</option>
+          <option selected={product.category === "Casa"}>Casa</option>
+          <option selected={product.category === "Apartamento"}>
+            Apartamento
+          </option>
+          <option selected={product.category === "Lote"}>Lote</option>
         </select>
         <input
           name="city"
@@ -131,9 +137,8 @@ export default function({ match }) {
         />
         <textarea
           name="description"
-          placeholder="Descrição"
+          placeholder="Digite a descrição"
           onChange={handleChange}
-          defaultValue={product.description}
         />
         <input
           type="number"

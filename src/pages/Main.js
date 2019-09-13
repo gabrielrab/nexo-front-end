@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { format } from "date-fns";
 
 import "./Main.css";
 import logo from "../assets/logo.svg";
@@ -15,8 +14,6 @@ export default function Main({ history }) {
 
   const handleChange = value => {
     //code here
-    console.log("Click");
-    console.log(value);
   };
   const Label = props => (
     <label className="btn-desabled" onClick={props.onClick}>
