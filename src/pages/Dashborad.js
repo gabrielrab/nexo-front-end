@@ -50,6 +50,9 @@ export default function({ match, history }) {
               <br />
               <p>Preco: R${product.price},00</p>
               <br />
+              <Link to={`/product/${product._id}`}>
+                <p>Visualizar</p>
+              </Link>
               <label>
                 Criado há:{" "}
                 {formatDistance(new Date(product.createdAt), new Date(), {

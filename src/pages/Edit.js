@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./Create.css";
 import api from "../services/api";
-//import useForm from "../hooks/useForms";
 
 import logo from "../assets/logo.svg";
 
@@ -13,7 +12,7 @@ export default function({ match }) {
   const { id } = match.params;
   const [product, setProduct] = useState([]);
   const [values, setValues] = useState({});
-  //const [{ values }, handleChange, handleSubmit] = useForm();
+  const [loading, setLoading] = useState("Atualizar");
 
   useEffect(() => {
     async function loadProduct() {
@@ -26,7 +25,21 @@ export default function({ match }) {
 
   const onSubmited = async e => {
     e.preventDefault();
-    console.log(values);
+
+    try {
+      const response = await api.put(`/product/${id}`, values, {
+        onUploadProgress: ProgressEvent => {
+          setLoading("Carregando");
+        }
+      });
+      setLoading("Atualizar");
+      debugger;
+      response.status === 200
+        ? toast.success("Anúncio Editado!")
+        : toast.error("Algo deu errado!");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = event => {
@@ -35,38 +48,6 @@ export default function({ match }) {
     auxValues[event.target.name] = event.target.value;
     setValues(auxValues);
   };
-  // async function enviarProduto() {
-  //   const formData = new FormData();
-  //   formData.append("label", values["label"]);
-  //   formData.append("option", values["option"]);
-  //   formData.append("category", values["category"]);
-  //   formData.append("city", values["city"]);
-  //   formData.append("district", values["district"]);
-  //   formData.append("bedrooms", values["bedrooms"]);
-  //   formData.append("parkingSpaces", values["parkingSpaces"]);
-  //   formData.append("size", values["size"]);
-  //   formData.append("description", values["description"]);
-  //   formData.append("price", values["price"]);
-
-  //   try {
-  //     //#Parei na parte que tenho que enviar para o banco de dados as alteracoes ...
-  //     //Problema identificado = formData esta assumindo valores errados...
-  //     debugger;
-  //     const response = await api
-  //       .put(`/product/${id}`, formData)
-  //       .then(res => {
-  //         toast.success("Anúncio Editado!");
-  //       })
-  //       .catch(err => {
-  //         toast.error(
-  //           "Erro! Tente novamente mais tarde, ou contate o desenvolvedor"
-  //         );
-  //       });
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   return (
     <div className="create-container">
@@ -85,7 +66,7 @@ export default function({ match }) {
           onChange={handleChange}
           required
         />
-        <select name="option" onchange={handleChange}>
+        <select name="option" onChange={handleChange}>
           <option hidden>Tipo</option>
           <option value="alugar" selected={product.option === "alugar"}>
             Alugar
@@ -148,8 +129,9 @@ export default function({ match }) {
           onChange={handleChange}
         />
         <button className="btn" type="submit">
-          Atualiza
+          {loading}
         </button>
+        <Link to="/dashboard">Voltar</Link>
       </form>
     </div>
   );
