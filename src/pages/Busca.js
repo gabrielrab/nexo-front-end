@@ -24,15 +24,29 @@ export default function Busca() {
     loadProducts();
   }, []);
 
+  const filterObject = (obj, filter, filterValue) => {
+    return Object.keys(obj).reduce(
+      (acc, val) =>
+        obj[val][filter] !== filterValue
+          ? acc
+          : {
+              ...acc,
+              [val]: obj[val]
+            },
+      {}
+    );
+  };
+
   const handleChange = event => {
     console.log("Click");
     const { value, name } = event.target;
     //const key = event.target.name;
     debugger;
-    let filtered = products.filter(function(product) {
-      return product.badrooms === 3;
-    });
+    var filtered = filterObject(products, name, 3);
+
     console.log(filtered);
+    setProducts([]);
+    console.log(products);
   };
 
   return (

@@ -101,7 +101,7 @@ nav .search ul li label select{
 .product{
     max-width: 700px;
     height: 180px;
-    min-width: 280px;
+    width: 700px;
     background: white;
     border-radius: 4px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
