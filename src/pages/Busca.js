@@ -12,42 +12,38 @@ import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
 
 export default function Busca() {
-  const [original, setOriginal] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
+  const [products, setProducts] = useState([]); //aqui deve receber os valores após o filtro
+  const [apply, setApply] = useState(false);
+  const [values, setValues] = useState({});
 
   useEffect(() => {
     async function loadProducts() {
       const response = await api.get("/product");
-      setProducts(response.data.product);
       setOriginal(response.data.product);
     }
     loadProducts();
   }, []);
 
-  const filterObject = (obj, filter, filterValue) => {
-    return Object.keys(obj).reduce(
-      (acc, val) =>
-        obj[val][filter] !== filterValue
-          ? acc
-          : {
-              ...acc,
-              [val]: obj[val]
-            },
-      {}
-    );
+  const enviar = event => {
+    const auxValues = { ...values };
+    auxValues[event.target.name] = event.target.value;
+    setValues(auxValues);
   };
 
-  const handleChange = event => {
-    console.log("Click");
+  function handleChange(event) {
     const { value, name } = event.target;
-    //const key = event.target.name;
-    debugger;
-    var filtered = filterObject(products, name, 3);
 
-    console.log(filtered);
-    setProducts([]);
-    console.log(products);
-  };
+    var filtered = original.filter(
+      el => el[name] === value || el[name] === parseInt(value)
+    );
+    setApply(true);
+    setProducts(filtered);
+    console.log("orginal", original);
+    console.log("filtrado", filtered);
+    console.log("products", products);
+    debugger;
+  }
 
   return (
     <div>
@@ -130,58 +126,12 @@ export default function Busca() {
           </ul>
         </div>
       </nav>
-      {products.length > 0 ? (
-        <div className="main">
-          {products.map(product => (
-            <Link to={`/product/${product._id}`} key={product._id}>
-              <div className="product" key={product._id}>
-                <div className="content-img">
-                  <img
-                    src={product.imagesURL[0].url}
-                    alt=""
-                    className="img-product"
-                  />
-                </div>
-                <div className="content-infos">
-                  <div className="infos">
-                    <span>
-                      <b>{product.label}</b>
-                      <br />
-                      B. {product.district} - {product.city}
-                    </span>
-                    <label className="price">R$ {product.price},00</label>
-                  </div>
-                  <div className="skills">
-                    <ul>
-                      <li>
-                        <img src={bed} alt="bed-value" className="icon-min" />
-                        {product.bedrooms}
-                      </li>
-                      <li>
-                        <img src={car} alt="bed-value" className="icon-min" />
-                        {product.parkingSpaces}
-                      </li>
-                      <li>
-                        <img
-                          src={fullsize}
-                          alt="bed-value"
-                          className="icon-min"
-                        />
-                        {product.size} m²
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+      {apply === false ? (
+        <h1>Original</h1>
+      ) : products.length > 0 ? (
+        <h1>Filtrado </h1>
       ) : (
-        <div className="empty">
-          Aguarde.
-          <br />
-          Ou tente redefinir a busca.
-        </div>
+        <h1>Filtro Vazio</h1>
       )}
     </div>
   );
