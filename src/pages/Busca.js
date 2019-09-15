@@ -15,7 +15,6 @@ export default function Busca() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
   const [products, setProducts] = useState([]); //aqui deve receber os valores após o filtro
   const [apply, setApply] = useState(false);
-  const [values, setValues] = useState({});
 
   useEffect(() => {
     async function loadProducts() {
@@ -25,23 +24,20 @@ export default function Busca() {
     loadProducts();
   }, []);
 
-  const enviar = event => {
-    const auxValues = { ...values };
-    auxValues[event.target.name] = event.target.value;
-    setValues(auxValues);
-  };
-
-  function handleChange(event) {
+  async function handleChange(event) {
+    event.preventDefault();
+    console.log("click");
     const { value, name } = event.target;
 
     var filtered = original.filter(
       el => el[name] === value || el[name] === parseInt(value)
     );
     setApply(true);
-    setProducts(filtered);
+    await setProducts(filtered);
     console.log("orginal", original);
     console.log("filtrado", filtered);
     console.log("products", products);
+
     debugger;
   }
 
@@ -126,13 +122,107 @@ export default function Busca() {
           </ul>
         </div>
       </nav>
-      {apply === false ? (
-        <h1>Original</h1>
-      ) : products.length > 0 ? (
-        <h1>Filtrado </h1>
-      ) : (
-        <h1>Filtro Vazio</h1>
-      )}
+      <div className="main">
+        {apply === false ? (
+          <>
+            {original.map(product => (
+              <Link to={`/product/${product._id}`} key={product._id}>
+                <div className="product" key={product._id}>
+                  <div className="content-img">
+                    <img
+                      src={product.imagesURL[0].url}
+                      alt=""
+                      className="img-product"
+                    />
+                  </div>
+                  <div className="content-infos">
+                    <div className="infos">
+                      <span>
+                        <b>{product.label}</b>
+                        <br />
+                        B. {product.district} - {product.city}
+                      </span>
+                      <label className="price">R$ {product.price},00</label>
+                    </div>
+                    <div className="skills">
+                      <ul>
+                        <li>
+                          <img src={bed} alt="bed-value" className="icon-min" />
+                          {product.bedrooms}
+                        </li>
+                        <li>
+                          <img src={car} alt="bed-value" className="icon-min" />
+                          {product.parkingSpaces}
+                        </li>
+                        <li>
+                          <img
+                            src={fullsize}
+                            alt="bed-value"
+                            className="icon-min"
+                          />
+                          {product.size} m²
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </>
+        ) : products.length > 0 ? (
+          <>
+            {products.map(product => (
+              <Link to={`/product/${product._id}`} key={product._id}>
+                <div className="product" key={product._id}>
+                  <div className="content-img">
+                    <img
+                      src={product.imagesURL[0].url}
+                      alt=""
+                      className="img-product"
+                    />
+                  </div>
+                  <div className="content-infos">
+                    <div className="infos">
+                      <span>
+                        <b>{product.label}</b>
+                        <br />
+                        B. {product.district} - {product.city}
+                      </span>
+                      <label className="price">R$ {product.price},00</label>
+                    </div>
+                    <div className="skills">
+                      <ul>
+                        <li>
+                          <img src={bed} alt="bed-value" className="icon-min" />
+                          {product.bedrooms}
+                        </li>
+                        <li>
+                          <img src={car} alt="bed-value" className="icon-min" />
+                          {product.parkingSpaces}
+                        </li>
+                        <li>
+                          <img
+                            src={fullsize}
+                            alt="bed-value"
+                            className="icon-min"
+                          />
+                          {product.size} m²
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </>
+        ) : (
+          <div className="empty">
+            Aguarde.
+            <br />
+            Ou tente redefinir a busca.
+          </div>
+        )}
+      </div>
     </div>
   );
 }
