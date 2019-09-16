@@ -15,6 +15,8 @@ export default function Busca() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
   const [products, setProducts] = useState([]); //aqui deve receber os valores após o filtro
   const [apply, setApply] = useState(false);
+  const [alugar, setAlugar] = useState(false);
+  const [comprar, setComprar] = useState(false);
 
   useEffect(() => {
     async function loadProducts() {
@@ -26,19 +28,79 @@ export default function Busca() {
 
   async function handleChange(event) {
     event.preventDefault();
-    console.log("click");
     const { value, name } = event.target;
 
-    var filtered = original.filter(
-      el => el[name] === value || el[name] === parseInt(value)
-    );
+    let filtered;
+
+    apply === false
+      ? (filtered = original.filter(
+          el => el[name] === value || el[name] === parseInt(value)
+        ))
+      : (filtered = products.filter(
+          el => el[name] === value || el[name] === parseInt(value)
+        ));
+
     setApply(true);
     await setProducts(filtered);
-    console.log("orginal", original);
-    console.log("filtrado", filtered);
-    console.log("products", products);
+  }
 
-    debugger;
+  async function handleChangeWord(event) {
+    event.preventDefault();
+    const { value, name } = event.target;
+
+    let filtered;
+
+    apply === false
+      ? (filtered = original.filter(el => {
+          const lc = el[name].toLowerCase();
+          const filter = value.toLowerCase();
+          return lc.includes(filter);
+        }))
+      : (filtered = products.filter(el => {
+          const lc = el[name].toLowerCase();
+          const filter = value.toLowerCase();
+          return lc.includes(filter);
+        }));
+
+    setApply(true);
+    await setProducts(filtered);
+  }
+
+  async function handleAlugar() {
+    let filtered;
+    apply === false
+      ? (filtered = original.filter(el => el["option"] === "alugar"))
+      : (filtered = products.filter(el => el["option"] === "alugar"));
+
+    setApply(true);
+    await setProducts(filtered);
+    setAlugar(true);
+    setComprar(false);
+  }
+
+  async function handleComprar() {
+    let filtered;
+    apply === false
+      ? (filtered = original.filter(el => el["option"] === "comprar"))
+      : (filtered = products.filter(el => el["option"] === "comprar"));
+
+    setApply(true);
+    await setProducts(filtered);
+    setAlugar(false);
+    setComprar(true);
+  }
+
+  async function handleNumero(event) {
+    event.preventDefault();
+    const { value, name } = event.target;
+
+    let filtered;
+    apply === false
+      ? (filtered = original.filter(el => el[name] >= parseInt(value)))
+      : (filtered = products.filter(el => el[name] >= parseInt(value)));
+
+    setApply(true);
+    await setProducts(filtered);
   }
 
   return (
@@ -53,16 +115,24 @@ export default function Busca() {
           <ul>
             <li>
               O que você está procurando ?
-              <button className="btn1">Alugar</button>
-              <button className="btn1">Comprar</button>
+              <button className="btn1" onClick={handleAlugar}>
+                Alugar
+              </button>
+              <button className="btn1" onClick={handleComprar}>
+                Comprar
+              </button>
             </li>
 
             <li>
               Em qual local ?<br />
               <label>
-                <select className="no-border">
-                  <option>Selecione</option>
-                </select>
+                <input
+                  type="text"
+                  name="city"
+                  className="no-border"
+                  placeholder="Digite Aqui"
+                  onChange={handleChangeWord}
+                />
               </label>
             </li>
 
@@ -102,7 +172,7 @@ export default function Busca() {
             <li>
               <label>
                 <img src={car} alt="Carro" className="icone" />
-                <select className="no-border">
+                <select className="no-border" onChange={handleChange}>
                   <option>Vagas</option>
                   <option>2</option>
                   <option>4</option>
@@ -114,8 +184,18 @@ export default function Busca() {
             <li>
               <label>
                 <img src={fullsize} alt="Tamanho" className="icone" />
-                <select className="no-border">
+                <select
+                  className="no-border"
+                  name="size"
+                  onChange={handleNumero}
+                >
                   <option>Tamanho</option>
+                  <option value="200">Maior que 200m²</option>
+                  <option value="300">Maior que 300m²</option>
+                  <option value="400">Maior que 400m²</option>
+                  <option value="500">Maior que 500m²</option>
+                  <option value="600">Maior que 600m²</option>
+                  <option value="700">Maior que 700m²</option>
                 </select>
               </label>
             </li>
@@ -217,9 +297,11 @@ export default function Busca() {
           </>
         ) : (
           <div className="empty">
-            Aguarde.
+            Aguarde,
             <br />
-            Ou tente redefinir a busca.
+            <p>
+              ou tente <a href="/busca">redefinir busca</a>
+            </p>
           </div>
         )}
       </div>
