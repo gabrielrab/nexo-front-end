@@ -49,7 +49,7 @@ nav .search ul li label select{
     margin-top: 5px;
 }
 
-input{
+nav .search ul li label input{
     background: #F8F8F8;
     padding: 5px 14px;
     margin-left: 5px;

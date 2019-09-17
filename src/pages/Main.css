@@ -78,4 +78,16 @@ main .container{
     background: #fcf512;
     border: none;
 }
-@media screen and (max-width: 767px) and (min-width: 300px) {}
+.foo{
+    margin-top: 30px;
+    width: 100vw;
+    text-align: center;
+}
+.foo img {
+    width: 100px;
+}
+@media screen and (max-width: 767px) and (min-width: 300px) {
+    main header{
+        padding: 10px;
+    }
+}
