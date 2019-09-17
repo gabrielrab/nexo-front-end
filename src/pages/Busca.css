@@ -185,6 +185,14 @@ nav .search ul li label input{
     justify-content: center;
     text-align: center;
 }
+.desc{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+.desc h1{
+    font-size: 40px;
+}
 
 
 @media screen and (max-width: 767px) and (min-width: 300px) {

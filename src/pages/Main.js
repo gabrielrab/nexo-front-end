@@ -5,16 +5,19 @@ import "./Main.css";
 import logo from "../assets/logo.svg";
 
 export default function Main({ history }) {
-  const [preFilrer, setPreFilter] = useState();
-
   const handleSubmit = event => {
     event.preventDefault();
     history.push("/busca");
   };
 
-  const handleChange = value => {
-    //code here
+  const handleChangeAlugar = () => {
+    history.push("/alugar");
   };
+
+  const handleChangeComprar = () => {
+    history.push("/comprar");
+  };
+
   const Label = props => (
     <label className="btn-desabled" onClick={props.onClick}>
       {props.text}
@@ -33,8 +36,8 @@ export default function Main({ history }) {
           <h1>Busque pelos melhores imóveis da região.</h1>
           <form className="box-search" onSubmit={handleSubmit}>
             <h1>O que você está procurando?</h1>
-            <Label onClick={handleChange("text")} text="Comprar" />
-            <button className="btn-desabled">Alugar</button>
+            <Label onClick={handleChangeComprar} text="Comprar" />
+            <Label onClick={handleChangeAlugar} text="Alugar" />
             <br />
             <button className="btn">Buscar</button>
           </form>

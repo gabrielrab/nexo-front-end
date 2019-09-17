@@ -10,6 +10,8 @@ import Create from "./pages/Create";
 import Dashborad from "./pages/Dashborad";
 import Product from "./pages/Product";
 import Edit from "./pages/Edit";
+import Alugar from "./pages/Alugar";
+import Comprar from "./pages/Comprar";
 
 const PrivatedRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -31,6 +33,8 @@ export default function Routes() {
     <BrowserRouter>
       <Route path="/" exact component={Main} />
       <Route path="/busca" component={Busca} />
+      <Route path="/alugar" component={Alugar} />
+      <Route path="/comprar" component={Comprar} />
       <Route path="/login" component={Login} />
       <PrivatedRoute path="/create" component={Create} />
       <PrivatedRoute path="/dashboard" component={Dashborad} />
