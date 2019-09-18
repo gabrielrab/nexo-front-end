@@ -15,8 +15,6 @@ export default function Busca() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
   const [products, setProducts] = useState([]); //aqui deve receber os valores após o filtro
   const [apply, setApply] = useState(false);
-  const [alugar, setAlugar] = useState(false);
-  const [comprar, setComprar] = useState(false);
 
   useEffect(() => {
     async function loadProducts() {
@@ -29,6 +27,8 @@ export default function Busca() {
   async function handleChange(event) {
     event.preventDefault();
     const { value, name } = event.target;
+
+    debugger;
 
     let filtered;
 
@@ -52,9 +52,13 @@ export default function Busca() {
 
     apply === false
       ? (filtered = original.filter(el => {
-          const lc = el[name].toLowerCase();
-          const filter = value.toLowerCase();
-          return lc.includes(filter);
+          const comp = `${el["district"]}${el["city"]}`.toLocaleLowerCase();
+
+          let filtered = comp.includes(value.toLocaleLowerCase());
+
+          if (filtered === true) {
+            return filtered;
+          }
         }))
       : (filtered = products.filter(el => {
           const lc = el[name].toLowerCase();
@@ -64,30 +68,6 @@ export default function Busca() {
 
     setApply(true);
     await setProducts(filtered);
-  }
-
-  async function handleAlugar() {
-    let filtered;
-    apply === false
-      ? (filtered = original.filter(el => el["option"] === "alugar"))
-      : (filtered = products.filter(el => el["option"] === "alugar"));
-
-    setApply(true);
-    await setProducts(filtered);
-    setAlugar(true);
-    setComprar(false);
-  }
-
-  async function handleComprar() {
-    let filtered;
-    apply === false
-      ? (filtered = original.filter(el => el["option"] === "comprar"))
-      : (filtered = products.filter(el => el["option"] === "comprar"));
-
-    setApply(true);
-    await setProducts(filtered);
-    setAlugar(false);
-    setComprar(true);
   }
 
   async function handleNumero(event) {
@@ -114,17 +94,23 @@ export default function Busca() {
         <div className="search">
           <ul>
             <li>
-              O que você está procurando ?
-              <button className="btn1" onClick={handleAlugar}>
-                Alugar
-              </button>
-              <button className="btn1" onClick={handleComprar}>
-                Comprar
-              </button>
+              O que você está procurando ?<br />
+              <label>
+                <select
+                  className="no-border"
+                  name="option"
+                  onChange={handleChange}
+                >
+                  <option hidden>Selecione</option>
+                  <option value="alugar">Alugar</option>
+                  <option value="comprar">Comprar</option>
+                </select>
+              </label>
             </li>
 
             <li>
-              Em qual local ?<br />
+              Cidade:
+              <br />
               <label>
                 <input
                   type="text"

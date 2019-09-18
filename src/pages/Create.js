@@ -71,52 +71,66 @@ export default function() {
         <div class="form-group">
           <ToastContainer />
         </div>
+        <label>Titulo:</label>
         <input
           name="label"
-          placeholder="Titulo"
+          placeholder="Digite aqui"
           onChange={handleChange}
           required
         />
+        <label>Tipo :</label>
         <select name="option" onChange={handleChange}>
-          <option hidden>Tipo</option>
+          <option hidden>Selecione aqui</option>
           <option value="alugar">Alugar</option>
           <option value="comprar">Comprar</option>
         </select>
+        <label>Categoria :</label>
         <select name="category" onChange={handleChange}>
-          <option hidden>Categoria</option>
+          <option hidden>Selecione aqui</option>
           <option>Casa</option>
           <option>Apartamento</option>
           <option>Lote</option>
         </select>
-        <input name="city" placeholder="Cidade" onChange={handleChange} />
-        <input name="district" placeholder="Bairro" onChange={handleChange} />
+        <label>Cidade :</label>
+        <input name="city" placeholder="Digite aqui" onChange={handleChange} />
+        <label>Bairro :</label>
+        <input
+          name="district"
+          placeholder="Dgite aqui"
+          onChange={handleChange}
+        />
+        <label>Quantidade de quartos :</label>
         <input
           type="number"
           name="bedrooms"
-          placeholder="Quartos"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Espaços na garagem :</label>
         <input
           type="number"
           name="parkingSpaces"
-          placeholder="Espaços na garagem"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Tamanho :</label>
         <input
           type="number"
           name="size"
-          placeholder="Tamanho"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Descrição :</label>
         <textarea
           name="description"
-          placeholder="Descrição"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Preço :</label>
         <input
           type="number"
           name="price"
-          placeholder="Preço"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
         <input

@@ -27,13 +27,6 @@ nav .search ul li{
     flex-direction: column;
 }
 
-nav .search ul li:nth-child(1){
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-}
-
 nav .search ul li label{
     display: flex;
     justify-content: center;

@@ -10,9 +10,14 @@
 .create-container form{
     width: 100vw;
     max-width: 350px;
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column; 
+}
+
+.create-container form label{
+    margin-bottom: 3px;
+    margin-left: 3px;    
 }
 
 .create-container form input{
