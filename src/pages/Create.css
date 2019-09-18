@@ -48,4 +48,13 @@ textarea{
     height: 90px;
 }
 
+.btn{
+    background: #fcf512;
+    padding: 10px 34px;
+    border: none;
+    margin: 9px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
 

@@ -35,6 +35,7 @@ export default function() {
     formData.append("city", values["city"]);
     formData.append("district", values["district"]);
     formData.append("bedrooms", values["bedrooms"]);
+    formData.append("wc", values["wc"]);
     formData.append("parkingSpaces", values["parkingSpaces"]);
     formData.append("size", values["size"]);
     formData.append("description", values["description"]);
@@ -103,6 +104,13 @@ export default function() {
         <input
           type="number"
           name="bedrooms"
+          placeholder="Digite aqui"
+          onChange={handleChange}
+        />
+        <label>Quantidade de banheiros :</label>
+        <input
+          type="number"
+          name="wc"
           placeholder="Digite aqui"
           onChange={handleChange}
         />
