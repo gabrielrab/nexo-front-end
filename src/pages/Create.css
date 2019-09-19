@@ -10,7 +10,7 @@
 .create-container form{
     width: 100vw;
     max-width: 350px;
-    text-align: left;
+    text-align: center;
     display: flex;
     flex-direction: column; 
 }

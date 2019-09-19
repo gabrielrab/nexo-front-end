@@ -18,6 +18,7 @@ export default function() {
     handleChangeImages
   ] = useForm();
   const [loading, setLoading] = useState(0);
+  const [progress, setProgress] = useState("Enviar");
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -46,10 +47,13 @@ export default function() {
         .post("/product", formData, {
           onUploadProgress: ProgressEvent => {
             setLoading((ProgressEvent.loaded / ProgressEvent.total) * 100);
+            setProgress("Carregando...");
           }
         })
         .then(res => {
+          setProgress("Enviar");
           toast.success("Anúncio Criado!");
+          alert("O anúncio foi criado com sucesso!");
         })
         .catch(err => {
           toast.error(
@@ -149,7 +153,7 @@ export default function() {
         />
         <Line percent={loading} strokeWidth="4" strokeColor="#fcf512" />
         <button className="btn" type="submit">
-          Enviar
+          {progress}
         </button>
       </form>
     </div>
