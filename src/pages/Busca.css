@@ -6,10 +6,21 @@ nav{
     padding: 20px;
     background: white;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+    border-top: #fcf512 40px solid;
+}
+
+.nav-logo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.nav-logo h2{
+    margin-right: 3px;
 }
 
 .logo{
-    width: 100px;
+    width: 150px;
 }
 
 nav .search ul{
