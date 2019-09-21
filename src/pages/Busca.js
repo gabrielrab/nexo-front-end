@@ -90,7 +90,11 @@ export default function Busca() {
           <Link to="/">
             <img src={logo} alt="Nexo Imobiliária" className="logo" />
           </Link>
-          <h2>(37) 3244-3630</h2>
+          <div className="phone-number">
+            <h3>(37) 99926-3631</h3>
+            <h3>(37) 99963-2301</h3>
+            <h3>(37) 99937-5320</h3>
+          </div>
         </div>
         <div className="search">
           <ul>
