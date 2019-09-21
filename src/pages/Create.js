@@ -18,6 +18,7 @@ export default function() {
     handleChangeImages
   ] = useForm();
   const [loading, setLoading] = useState(0);
+  const [progress, setProgress] = useState("Enviar");
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -35,6 +36,7 @@ export default function() {
     formData.append("city", values["city"]);
     formData.append("district", values["district"]);
     formData.append("bedrooms", values["bedrooms"]);
+    formData.append("wc", values["wc"]);
     formData.append("parkingSpaces", values["parkingSpaces"]);
     formData.append("size", values["size"]);
     formData.append("description", values["description"]);
@@ -45,10 +47,13 @@ export default function() {
         .post("/product", formData, {
           onUploadProgress: ProgressEvent => {
             setLoading((ProgressEvent.loaded / ProgressEvent.total) * 100);
+            setProgress("Carregando...");
           }
         })
         .then(res => {
+          setProgress("Enviar");
           toast.success("Anúncio Criado!");
+          alert("O anúncio foi criado com sucesso!");
         })
         .catch(err => {
           toast.error(
@@ -71,52 +76,73 @@ export default function() {
         <div class="form-group">
           <ToastContainer />
         </div>
+        <label>Titulo:</label>
         <input
           name="label"
-          placeholder="Titulo"
+          placeholder="Digite aqui"
           onChange={handleChange}
           required
         />
+        <label>Tipo :</label>
         <select name="option" onChange={handleChange}>
-          <option hidden>Tipo</option>
+          <option hidden>Selecione aqui</option>
           <option value="alugar">Alugar</option>
           <option value="comprar">Comprar</option>
         </select>
+        <label>Categoria :</label>
         <select name="category" onChange={handleChange}>
-          <option hidden>Categoria</option>
+          <option hidden>Selecione aqui</option>
           <option>Casa</option>
           <option>Apartamento</option>
           <option>Lote</option>
         </select>
-        <input name="city" placeholder="Cidade" onChange={handleChange} />
-        <input name="district" placeholder="Bairro" onChange={handleChange} />
+        <label>Cidade :</label>
+        <input name="city" placeholder="Digite aqui" onChange={handleChange} />
+        <label>Bairro :</label>
+        <input
+          name="district"
+          placeholder="Dgite aqui"
+          onChange={handleChange}
+        />
+        <label>Quantidade de quartos :</label>
         <input
           type="number"
           name="bedrooms"
-          placeholder="Quartos"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Quantidade de banheiros :</label>
+        <input
+          type="number"
+          name="wc"
+          placeholder="Digite aqui"
+          onChange={handleChange}
+        />
+        <label>Espaços na garagem :</label>
         <input
           type="number"
           name="parkingSpaces"
-          placeholder="Espaços na garagem"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Tamanho :</label>
         <input
           type="number"
           name="size"
-          placeholder="Tamanho"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Descrição :</label>
         <textarea
           name="description"
-          placeholder="Descrição"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Preço :</label>
         <input
           type="number"
           name="price"
-          placeholder="Preço"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
         <input
@@ -127,7 +153,7 @@ export default function() {
         />
         <Line percent={loading} strokeWidth="4" strokeColor="#fcf512" />
         <button className="btn" type="submit">
-          Enviar
+          {progress}
         </button>
       </form>
     </div>

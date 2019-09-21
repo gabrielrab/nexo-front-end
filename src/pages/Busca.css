@@ -6,16 +6,28 @@ nav{
     padding: 20px;
     background: white;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+    border-top: #fcf512 40px solid;
+}
+
+.nav-logo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.nav-logo h2{
+    margin-right: 3px;
 }
 
 .logo{
-    width: 100px;
+    width: 150px;
 }
 
 nav .search ul{
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 3fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 4fr));
     grid-gap: 20px;
     margin-top: 5px;
 }
@@ -25,13 +37,6 @@ nav .search ul li{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-
-nav .search ul li:nth-child(1){
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
 }
 
 nav .search ul li label{
@@ -193,7 +198,6 @@ nav .search ul li label input{
 .desc h1{
     font-size: 40px;
 }
-
 
 @media screen and (max-width: 767px) and (min-width: 300px) {
     nav .search ul{

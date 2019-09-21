@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 import { isAutenticated } from "./services/auth";
 
-import Main from "./pages/Main";
 import Busca from "./pages/Busca";
 import Login from "./pages/Login";
 import Create from "./pages/Create";
@@ -31,7 +30,7 @@ const PrivatedRoute = ({ component: Component, ...rest }) => (
 export default function Routes() {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Main} />
+      <Route path="/" exact component={Busca} />
       <Route path="/busca" component={Busca} />
       <Route path="/alugar" component={Alugar} />
       <Route path="/comprar" component={Comprar} />
