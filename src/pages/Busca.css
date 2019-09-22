@@ -27,7 +27,7 @@ nav{
 nav .search ul{
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 4fr));
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
     margin-top: 5px;
 }
@@ -72,16 +72,12 @@ nav .search ul li label input{
 }
 
 .btn1{
-    background: transparent;
-    padding: 5px 12px;
+    background: #fcf512;
+    padding: 7px 14px;
     border: none;
     margin: 5px;
-    font-size: 16px;
+    font-size: 17px;
     border-radius: 5px;
-}
-
-.btn1:hover{
-    background: #fcf512;
 }
 
 .btn2{
@@ -89,7 +85,7 @@ nav .search ul li label input{
     padding: 5px 12px;
     border: none;
     margin: 5px;
-    font-size: 16px;
+    font-size: 17px;
     border-radius: 5px;
 }
 
@@ -197,6 +193,11 @@ nav .search ul li label input{
 }
 .desc h1{
     font-size: 40px;
+}
+
+.btn-list{
+    display: flex;
+    justify-content: flex-end;
 }
 
 @media screen and (max-width: 767px) and (min-width: 300px) {
