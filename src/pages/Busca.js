@@ -11,6 +11,8 @@ import car from "../assets/car.svg";
 import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
 import hand from "../assets/hand.svg";
+import wc from "../assets/wc.svg";
+import street from "../assets/street.svg";
 
 export default function Busca() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
@@ -169,7 +171,7 @@ export default function Busca() {
               <>
                 <li>
                   <label>
-                    <img src={bed} alt="Quartos" className="icone" />
+                    <img src={street} alt="Rua" className="icone" />
                     <input
                       type="text"
                       name="street"
@@ -201,7 +203,7 @@ export default function Busca() {
 
                 <li>
                   <label>
-                    <img src={bed} alt="Quartos" className="icone" />
+                    <img src={wc} alt="WC" className="icone" />
                     <input
                       type="number"
                       name="wc"
@@ -214,7 +216,7 @@ export default function Busca() {
 
                 <li>
                   <label>
-                    <img src={bed} alt="Quartos" className="icone" />
+                    <img src={bed} alt="Suites" className="icone" />
                     <input
                       type="number"
                       name="suites"
@@ -256,14 +258,14 @@ export default function Busca() {
 
                 <li>
                   <label>
-                    <img src={hand} alt="Tamanho" className="icone" />
+                    <img src={hand} alt="Preco" className="icone" />
                     <select
                       className="no-border"
                       name="price"
                       onChange={handleNumero}
                     >
                       <option>Preço</option>
-                      <option value="200">Maior que 200m²</option>
+                      <option value="10000">Maior que 10 mil</option>
                       <option value="300">Maior que 300m²</option>
                       <option value="400">Maior que 400m²</option>
                       <option value="500">Maior que 500m²</option>
