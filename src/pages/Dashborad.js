@@ -43,7 +43,7 @@ export default function({ match, history }) {
           {products.map(product => (
             <div className="box" key={product._id}>
               <span>#{product.code}</span>
-              <h3>{product.title}</h3>
+              <h3>{product.label}</h3>
               <p>
                 B. {product.district} - {product.city}
               </p>

@@ -10,11 +10,16 @@ import logo from "../assets/logo.svg";
 import car from "../assets/car.svg";
 import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
+import hand from "../assets/hand.svg";
+import wc from "../assets/wc.svg";
+import street from "../assets/street.svg";
 
 export default function Busca() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
   const [products, setProducts] = useState([]); //aqui deve receber os valores após o filtro
   const [apply, setApply] = useState(false);
+  const [filters, setFilters] = useState(false);
+  const [option, setOption] = useState("+ Filtros");
 
   useEffect(() => {
     async function loadProducts() {
@@ -27,9 +32,6 @@ export default function Busca() {
   async function handleChange(event) {
     event.preventDefault();
     const { value, name } = event.target;
-
-    debugger;
-
     let filtered;
 
     apply === false
@@ -52,13 +54,9 @@ export default function Busca() {
 
     apply === false
       ? (filtered = original.filter(el => {
-          const comp = `${el["district"]}${el["city"]}`.toLocaleLowerCase();
-
-          let filtered = comp.includes(value.toLocaleLowerCase());
-
-          if (filtered === true) {
-            return filtered;
-          }
+          const lc = el[name].toLowerCase();
+          const filter = value.toLowerCase();
+          return lc.includes(filter);
         }))
       : (filtered = products.filter(el => {
           const lc = el[name].toLowerCase();
@@ -81,6 +79,15 @@ export default function Busca() {
 
     setApply(true);
     await setProducts(filtered);
+  }
+
+  function handleRefresh() {
+    window.location.reload();
+  }
+
+  function handleMoreFilters() {
+    filters === false ? setFilters(true) : setFilters(false);
+    filters === false ? setOption("- Filtros") : setOption("+ Filtros");
   }
 
   return (
@@ -114,20 +121,6 @@ export default function Busca() {
             </li>
 
             <li>
-              Cidade:
-              <br />
-              <label>
-                <input
-                  type="text"
-                  name="city"
-                  className="no-border"
-                  placeholder="Digite Aqui"
-                  onChange={handleChangeWord}
-                />
-              </label>
-            </li>
-
-            <li>
               O qual tipo de imóvel ?<br />
               <label>
                 <select
@@ -144,53 +137,147 @@ export default function Busca() {
             </li>
 
             <li>
+              Cidade:
+              <br />
               <label>
-                <img src={bed} alt="Quartos" className="icone" />
-                <select
+                <input
+                  type="text"
+                  name="city"
                   className="no-border"
-                  name="bedrooms"
-                  onChange={handleChange}
-                >
-                  <option>Quartos</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+                  placeholder="Digite Aqui"
+                  onChange={handleChangeWord}
+                />
               </label>
             </li>
 
             <li>
+              Bairro:
+              <br />
               <label>
-                <img src={car} alt="Carro" className="icone" />
-                <select className="no-border" onChange={handleChange}>
-                  <option>Vagas</option>
-                  <option>2</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+                <input
+                  type="text"
+                  name="district"
+                  className="no-border"
+                  placeholder="Digite Aqui"
+                  onChange={handleChangeWord}
+                />
               </label>
             </li>
 
-            <li>
-              <label>
-                <img src={fullsize} alt="Tamanho" className="icone" />
-                <select
-                  className="no-border"
-                  name="size"
-                  onChange={handleNumero}
-                >
-                  <option>Tamanho</option>
-                  <option value="200">Maior que 200m²</option>
-                  <option value="300">Maior que 300m²</option>
-                  <option value="400">Maior que 400m²</option>
-                  <option value="500">Maior que 500m²</option>
-                  <option value="600">Maior que 600m²</option>
-                  <option value="700">Maior que 700m²</option>
-                </select>
-              </label>
-            </li>
+            {filters === true ? (
+              <>
+                <li>
+                  <label>
+                    <img src={street} alt="Rua" className="icone" />
+                    <input
+                      type="text"
+                      name="street"
+                      className="no-border"
+                      placeholder="Rua"
+                      onChange={handleChangeWord}
+                    />
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={fullsize} alt="Tamanho" className="icone" />
+                    <select
+                      className="no-border"
+                      name="size"
+                      onChange={handleNumero}
+                    >
+                      <option>Tamanho</option>
+                      <option value="200">Maior que 200m²</option>
+                      <option value="300">Maior que 300m²</option>
+                      <option value="400">Maior que 400m²</option>
+                      <option value="500">Maior que 500m²</option>
+                      <option value="600">Maior que 600m²</option>
+                      <option value="700">Maior que 700m²</option>
+                    </select>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={wc} alt="WC" className="icone" />
+                    <input
+                      type="number"
+                      name="wc"
+                      className="no-border"
+                      placeholder="Banheiros"
+                      onChange={handleNumero}
+                    />
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={bed} alt="Suites" className="icone" />
+                    <input
+                      type="number"
+                      name="suites"
+                      className="no-border"
+                      placeholder="Suites"
+                      onChange={handleNumero}
+                    />
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={bed} alt="Quartos" className="icone" />
+                    <select
+                      className="no-border"
+                      name="bedrooms"
+                      onChange={handleChange}
+                    >
+                      <option>Quartos</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={car} alt="Carro" className="icone" />
+                    <select className="no-border" onChange={handleChange}>
+                      <option>Vagas</option>
+                      <option>2</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={hand} alt="Preco" className="icone" />
+                    <input
+                      type="number"
+                      name="price"
+                      placeholder="Preco"
+                      className="no-border"
+                      onChange={handleNumero}
+                    />
+                  </label>
+                </li>
+              </>
+            ) : (
+              <></>
+            )}
           </ul>
+          <div className="btn-list">
+            <button className="btn2" onClick={handleMoreFilters}>
+              {option}
+            </button>
+            <button className="btn1" onClick={handleRefresh}>
+              Limpar
+            </button>
+          </div>
         </div>
       </nav>
       <div className="main">
@@ -213,7 +300,6 @@ export default function Busca() {
                         <br />
                         B. {product.district} - {product.city}
                       </span>
-                      <label className="price">R$ {product.price},00</label>
                     </div>
                     <div className="skills">
                       <ul>
@@ -234,6 +320,10 @@ export default function Busca() {
                           {product.size} m²
                         </li>
                       </ul>
+                      <div className="content-price">
+                        <label className="price">R$ {product.price},00</label>
+                        <span className="option">{product.option}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
