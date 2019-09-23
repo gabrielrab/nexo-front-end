@@ -10,6 +10,7 @@ import logo from "../assets/logo.svg";
 import car from "../assets/car.svg";
 import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
+import hand from "../assets/hand.svg";
 
 export default function Busca() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
@@ -169,6 +170,64 @@ export default function Busca() {
                 <li>
                   <label>
                     <img src={bed} alt="Quartos" className="icone" />
+                    <input
+                      type="text"
+                      name="street"
+                      className="no-border"
+                      placeholder="Rua"
+                      onChange={handleChangeWord}
+                    />
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={fullsize} alt="Tamanho" className="icone" />
+                    <select
+                      className="no-border"
+                      name="size"
+                      onChange={handleNumero}
+                    >
+                      <option>Tamanho</option>
+                      <option value="200">Maior que 200m²</option>
+                      <option value="300">Maior que 300m²</option>
+                      <option value="400">Maior que 400m²</option>
+                      <option value="500">Maior que 500m²</option>
+                      <option value="600">Maior que 600m²</option>
+                      <option value="700">Maior que 700m²</option>
+                    </select>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={bed} alt="Quartos" className="icone" />
+                    <input
+                      type="number"
+                      name="wc"
+                      className="no-border"
+                      placeholder="Banheiros"
+                      onChange={handleNumero}
+                    />
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={bed} alt="Quartos" className="icone" />
+                    <input
+                      type="number"
+                      name="suites"
+                      className="no-border"
+                      placeholder="Suites"
+                      onChange={handleNumero}
+                    />
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <img src={bed} alt="Quartos" className="icone" />
                     <select
                       className="no-border"
                       name="bedrooms"
@@ -197,26 +256,7 @@ export default function Busca() {
 
                 <li>
                   <label>
-                    <img src={fullsize} alt="Tamanho" className="icone" />
-                    <select
-                      className="no-border"
-                      name="size"
-                      onChange={handleNumero}
-                    >
-                      <option>Tamanho</option>
-                      <option value="200">Maior que 200m²</option>
-                      <option value="300">Maior que 300m²</option>
-                      <option value="400">Maior que 400m²</option>
-                      <option value="500">Maior que 500m²</option>
-                      <option value="600">Maior que 600m²</option>
-                      <option value="700">Maior que 700m²</option>
-                    </select>
-                  </label>
-                </li>
-
-                <li>
-                  <label>
-                    <img src={fullsize} alt="Tamanho" className="icone" />
+                    <img src={hand} alt="Tamanho" className="icone" />
                     <select
                       className="no-border"
                       name="price"
@@ -267,7 +307,6 @@ export default function Busca() {
                         <br />
                         B. {product.district} - {product.city}
                       </span>
-                      <label className="price">R$ {product.price},00</label>
                     </div>
                     <div className="skills">
                       <ul>
@@ -288,6 +327,10 @@ export default function Busca() {
                           {product.size} m²
                         </li>
                       </ul>
+                      <div className="content-price">
+                        <label className="price">R$ {product.price},00</label>
+                        <span className="option">{product.option}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
