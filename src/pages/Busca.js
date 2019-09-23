@@ -32,9 +32,6 @@ export default function Busca() {
   async function handleChange(event) {
     event.preventDefault();
     const { value, name } = event.target;
-
-    debugger;
-
     let filtered;
 
     apply === false
@@ -259,19 +256,13 @@ export default function Busca() {
                 <li>
                   <label>
                     <img src={hand} alt="Preco" className="icone" />
-                    <select
-                      className="no-border"
+                    <input
+                      type="number"
                       name="price"
+                      placeholder="Preco"
+                      className="no-border"
                       onChange={handleNumero}
-                    >
-                      <option>Preço</option>
-                      <option value="10000">Maior que 10 mil</option>
-                      <option value="300">Maior que 300m²</option>
-                      <option value="400">Maior que 400m²</option>
-                      <option value="500">Maior que 500m²</option>
-                      <option value="600">Maior que 600m²</option>
-                      <option value="700">Maior que 700m²</option>
-                    </select>
+                    />
                   </label>
                 </li>
               </>
