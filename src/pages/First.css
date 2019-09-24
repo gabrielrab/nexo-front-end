@@ -1,0 +1,81 @@
+nav{
+    background-color: white;
+    width: 100vw;
+    padding: 20px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+    border-top: 20px solid  #fcf512;
+}
+
+nav .logo{
+    width: 150px;
+}
+
+nav .logo:hover{
+    transform: translateY(-3px);
+    transition: all 0.2s;
+}
+
+nav .header-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+nav .header-nav div{
+    display: flex;
+    flex-direction: column;
+}
+
+nav .header-nav div span{
+    font-size: 20px;
+}
+
+nav ul{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+nav ul li input, nav ul li select{
+    width: 100%;
+}
+
+nav ul li label{
+    display: flex;
+}
+
+nav ul li label .icon{
+    max-height: 35px;
+    margin: 5px;
+}
+
+nav .list-btns{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav .list-btns .btn1{
+    background: #fcf512;
+    padding: 7px 14px;
+    border: none;
+    margin: 5px;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+nav .list-btns .btn2{
+    background: transparent;
+    padding: 7px 14px;
+    border: none;
+    margin: 5px;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+nav .list-btns .btn2:hover{
+    background: #fcf512;
+}

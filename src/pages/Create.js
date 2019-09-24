@@ -37,6 +37,8 @@ export default function() {
     formData.append("district", values["district"]);
     formData.append("bedrooms", values["bedrooms"]);
     formData.append("wc", values["wc"]);
+    formData.append("street", values["street"]);
+    formData.append("suites", values["suites"]);
     formData.append("parkingSpaces", values["parkingSpaces"]);
     formData.append("size", values["size"]);
     formData.append("description", values["description"]);
@@ -104,6 +106,13 @@ export default function() {
           placeholder="Dgite aqui"
           onChange={handleChange}
         />
+        <label>Rua :</label>
+        <input
+          type="text"
+          name="street"
+          placeholder="Digite aqui"
+          onChange={handleChange}
+        />
         <label>Quantidade de quartos :</label>
         <input
           type="number"
@@ -115,6 +124,13 @@ export default function() {
         <input
           type="number"
           name="wc"
+          placeholder="Digite aqui"
+          onChange={handleChange}
+        />
+        <label>Quantidade de suites :</label>
+        <input
+          type="number"
+          name="suites"
           placeholder="Digite aqui"
           onChange={handleChange}
         />

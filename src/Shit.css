@@ -149,7 +149,6 @@ nav .search ul li label input{
 }
 
 .content-infos .infos span{
-    flex: 1;
     text-align: left;
     font-size: 18px;
     color: #888888;

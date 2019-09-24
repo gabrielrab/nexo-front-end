@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "./Busca.css";
+//import "./Shit.css";
 
 import api from "../services/api";
 

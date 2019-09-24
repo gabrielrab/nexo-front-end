@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "./Busca.css";
+//import "./Shit.css";
 
 import api from "../services/api";
 
@@ -106,7 +106,8 @@ export default function Busca() {
         <div className="search">
           <ul>
             <li>
-              O que você está procurando ?<br />
+              O que você está procurando ?
+              <br />
               <label>
                 <select
                   className="no-border"
