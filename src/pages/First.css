@@ -79,3 +79,122 @@ nav .list-btns .btn2{
 nav .list-btns .btn2:hover{
     background: #fcf512;
 }
+
+/* MELOOOU */
+
+
+.main{
+    max-width: 990px;
+    margin: 0 auto;
+    padding: 50px 0;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+.icon-min{
+    height: 30px;
+    margin: 5px;
+}
+
+.product{
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.product:hover{
+    transform: translateY(-3px);
+    transition: all 0.2s;
+}
+
+.img-product{
+    width: 100%;
+    height: 230px;
+    border-radius: 4px;
+}
+
+.content-infos{
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-img{
+    width: 100%;
+}
+
+.content-infos .infos{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.content-infos .infos span{
+    text-align: left;
+    font-size: 18px;
+    color: #888888;
+    margin-right: 5px;
+}
+.content-price{
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.price{
+    background: #fcf512;
+    color: black;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 4px;
+}
+
+.skills ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.skills ul li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.empty{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.desc{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+.desc h1{
+    font-size: 40px;
+}
+
+.btn-list{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.option{
+    text-transform: uppercase;
+    color: black;
+}

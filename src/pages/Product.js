@@ -10,6 +10,10 @@ import logo from "../assets/logo.svg";
 import car from "../assets/car.svg";
 import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
+import hand from "../assets/hand.svg";
+import wc from "../assets/wc.svg";
+import street from "../assets/street.svg";
+
 import api from "../services/api";
 
 export default function Product({ match }) {
@@ -63,7 +67,7 @@ export default function Product({ match }) {
               {product.label} - <i>{product.option}</i>
             </h1>
             <span className="cinza">
-              B. {product.district} - {product.city}
+              {product.street}, B. {product.district} - {product.city}
             </span>
           </label>
 
@@ -76,6 +80,9 @@ export default function Product({ match }) {
             <li>
               <img src={bed} alt="bed-value" className="icon-min" />{" "}
               {product.bedrooms}
+            </li>
+            <li>
+              <img src={wc} alt="bed-value" className="icon-min" /> {product.wc}
             </li>
             <li>
               <img src={car} alt="bed-value" className="icon-min" />{" "}

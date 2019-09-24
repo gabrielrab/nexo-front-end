@@ -94,7 +94,9 @@ export default function() {
     <>
       <nav>
         <div className="header-nav">
-          <img src={logo} alt="nexo" className="logo" />
+          <Link to="/login">
+            <img src={logo} alt="nexo" className="logo" />
+          </Link>
           <div>
             <span>(37) 99926-3631</span>
             <span>(37) 99963-2301</span>
@@ -255,6 +257,115 @@ export default function() {
           </button>
         </div>
       </nav>
+      <div className="main">
+        {apply === false ? (
+          <>
+            {original.map(product => (
+              <Link to={`/product/${product._id}`} key={product._id}>
+                <div className="product" key={product._id}>
+                  <div className="content-img">
+                    <img
+                      src={product.imagesURL[0].url}
+                      alt=""
+                      className="img-product"
+                    />
+                  </div>
+                  <div className="content-infos">
+                    <div className="infos">
+                      <span>
+                        <b>{product.label}</b>
+                        <br />
+                        B. {product.district} - {product.city}
+                      </span>
+                    </div>
+                    <div className="skills">
+                      <ul>
+                        <li>
+                          <img src={bed} alt="bed-value" className="icon-min" />
+                          {product.bedrooms}
+                        </li>
+                        <li>
+                          <img src={car} alt="bed-value" className="icon-min" />
+                          {product.parkingSpaces}
+                        </li>
+                        <li>
+                          <img
+                            src={fullsize}
+                            alt="bed-value"
+                            className="icon-min"
+                          />
+                          {product.size} m²
+                        </li>
+                      </ul>
+                      <div className="content-price">
+                        <label className="price">R$ {product.price},00</label>
+                        <span className="option">{product.option}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </>
+        ) : products.length > 0 ? (
+          <>
+            {products.map(product => (
+              <Link to={`/product/${product._id}`} key={product._id}>
+                <div className="product" key={product._id}>
+                  <div className="content-img">
+                    <img
+                      src={product.imagesURL[0].url}
+                      alt=""
+                      className="img-product"
+                    />
+                  </div>
+                  <div className="content-infos">
+                    <div className="infos">
+                      <span>
+                        <b>{product.label}</b>
+                        <br />
+                        B. {product.district} - {product.city}
+                      </span>
+                    </div>
+                    <div className="skills">
+                      <ul>
+                        <li>
+                          <img src={bed} alt="bed-value" className="icon-min" />
+                          {product.bedrooms}
+                        </li>
+                        <li>
+                          <img src={car} alt="bed-value" className="icon-min" />
+                          {product.parkingSpaces}
+                        </li>
+                        <li>
+                          <img
+                            src={fullsize}
+                            alt="bed-value"
+                            className="icon-min"
+                          />
+                          {product.size} m²
+                        </li>
+                      </ul>
+                      <div className="content-price">
+                        <label className="price">R$ {product.price},00</label>
+                        <span className="option">{product.option}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </>
+        ) : (
+          <div className="empty">
+            Aguarde,
+            <br />
+            <p>
+              ou tente <a href="/busca">redefinir busca</a>
+            </p>
+          </div>
+        )}
+      </div>
     </>
   );
 }
