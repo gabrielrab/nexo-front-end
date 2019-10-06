@@ -6,7 +6,7 @@ import "./First.css";
 import api from "../services/api";
 
 //imagens
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 import car from "../assets/car.svg";
 import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
@@ -98,9 +98,21 @@ export default function() {
             <img src={logo} alt="nexo" className="logo" />
           </Link>
           <div>
-            <span>(37) 99926-3631</span>
-            <span>(37) 99963-2301</span>
-            <span>(37) 99937-5320</span>
+            <span>
+              <a href="https://api.whatsapp.com/send?phone=5537999263631&text=Ol%C3%A1%2C%20olhei%20alguns%20im%C3%B3veis%20no%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es">
+                Daniel {""}- (37) 99926-3631
+              </a>
+            </span>
+            <span>
+              <a href="https://api.whatsapp.com/send?phone=5537999632301&text=Ol%C3%A1%2C%20olhei%20alguns%20im%C3%B3veis%20no%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es">
+                Geraldo - (37) 99963-2301
+              </a>
+            </span>
+            <span>
+              <a href="https://api.whatsapp.com/send?phone=5537999375320&text=Ol%C3%A1%2C%20olhei%20alguns%20im%C3%B3veis%20no%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es">
+                Adriano - (37) 99937-5320
+              </a>
+            </span>
           </div>
         </div>
         <ul>
@@ -269,6 +281,7 @@ export default function() {
                       alt=""
                       className="img-product"
                     />
+                    <label className="tips option">{product.option}</label>
                   </div>
                   <div className="content-infos">
                     <div className="infos">
@@ -280,14 +293,28 @@ export default function() {
                     </div>
                     <div className="skills">
                       <ul>
-                        <li>
-                          <img src={bed} alt="bed-value" className="icon-min" />
-                          {product.bedrooms}
-                        </li>
-                        <li>
-                          <img src={car} alt="bed-value" className="icon-min" />
-                          {product.parkingSpaces}
-                        </li>
+                        {product.category === "Lote" ? (
+                          <></>
+                        ) : (
+                          <>
+                            <li>
+                              <img
+                                src={bed}
+                                alt="bed-value"
+                                className="icon-min"
+                              />
+                              {product.bedrooms}
+                            </li>
+                            <li>
+                              <img
+                                src={car}
+                                alt="bed-value"
+                                className="icon-min"
+                              />
+                              {product.parkingSpaces}
+                            </li>
+                          </>
+                        )}
                         <li>
                           <img
                             src={fullsize}
@@ -299,7 +326,6 @@ export default function() {
                       </ul>
                       <div className="content-price">
                         <label className="price">R$ {product.price},00</label>
-                        <span className="option">{product.option}</span>
                       </div>
                     </div>
                   </div>
@@ -318,6 +344,7 @@ export default function() {
                       alt=""
                       className="img-product"
                     />
+                    <label className="tips option">{product.option}</label>
                   </div>
                   <div className="content-infos">
                     <div className="infos">
@@ -329,14 +356,28 @@ export default function() {
                     </div>
                     <div className="skills">
                       <ul>
-                        <li>
-                          <img src={bed} alt="bed-value" className="icon-min" />
-                          {product.bedrooms}
-                        </li>
-                        <li>
-                          <img src={car} alt="bed-value" className="icon-min" />
-                          {product.parkingSpaces}
-                        </li>
+                        {product.category === "Lote" ? (
+                          <></>
+                        ) : (
+                          <>
+                            <li>
+                              <img
+                                src={bed}
+                                alt="bed-value"
+                                className="icon-min"
+                              />
+                              {product.bedrooms}
+                            </li>
+                            <li>
+                              <img
+                                src={car}
+                                alt="bed-value"
+                                className="icon-min"
+                              />
+                              {product.parkingSpaces}
+                            </li>
+                          </>
+                        )}
                         <li>
                           <img
                             src={fullsize}
@@ -348,7 +389,6 @@ export default function() {
                       </ul>
                       <div className="content-price">
                         <label className="price">R$ {product.price},00</label>
-                        <span className="option">{product.option}</span>
                       </div>
                     </div>
                   </div>
