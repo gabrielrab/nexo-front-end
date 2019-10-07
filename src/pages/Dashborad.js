@@ -6,7 +6,7 @@ import pt from "date-fns/locale/pt";
 import "./Dashboard.css";
 import api from "../services/api";
 
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 
 async function removeProduct(id) {
   window.confirm("Deseja realmente excluir?") === true
@@ -32,7 +32,7 @@ export default function({ match, history }) {
   return (
     <div className="container">
       <Link to="/">
-        <img src={logo} alt="Nexo" />
+        <img src={logo} alt="Nexo" className="logo-png" />
       </Link>
       <h1>Dashboard</h1>
       <Link to="/create">

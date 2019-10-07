@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 import api from "../services/api";
 
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 
 export default function({ history }) {
   const [user, setUser] = useState({});
@@ -44,7 +44,7 @@ export default function({ history }) {
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         <Link to="/">
-          <img src={logo} alt="Nexo" />
+          <img src={logo} alt="Nexo" className="logo-png" />
         </Link>
         <input
           name="user"

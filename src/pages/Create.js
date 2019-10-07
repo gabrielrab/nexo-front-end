@@ -8,7 +8,7 @@ import "./Create.css";
 import api from "../services/api";
 import useForm from "../hooks/useForms";
 
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 
 export default function() {
   const [
@@ -71,7 +71,7 @@ export default function() {
   return (
     <div className="create-container">
       <Link to="/">
-        <img src={logo} alt="Nexo" />
+        <img src={logo} alt="Nexo" className="logo-png" />
       </Link>
       <h1>Criar Anúncio</h1>
       <form onSubmit={handleSubmit(enviarProduto)}>

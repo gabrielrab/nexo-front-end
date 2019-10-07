@@ -7,6 +7,10 @@
     flex-direction: column;
 }
 
+.create-container .logo-png{
+    width: 200px;
+}
+
 .create-container form{
     width: 100vw;
     max-width: 350px;
