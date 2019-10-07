@@ -59,6 +59,7 @@ export default function({ match }) {
         <div className="form-group">
           <ToastContainer />
         </div>
+        <label>Titulo:</label>
         <input
           name="label"
           placeholder="Titulo"
@@ -66,8 +67,9 @@ export default function({ match }) {
           onChange={handleChange}
           required
         />
+        <label>Tipo:</label>
         <select name="option" onChange={handleChange}>
-          <option hidden>Tipo</option>
+          <option hidden>Selecione</option>
           <option value="alugar" selected={product.option === "alugar"}>
             Alugar
           </option>
@@ -75,6 +77,7 @@ export default function({ match }) {
             Comprar
           </option>
         </select>
+        <label>Categoria:</label>
         <select name="category" onChange={handleChange}>
           <option hidden>Categoria</option>
           <option selected={product.category === "Casa"}>Casa</option>
@@ -83,18 +86,29 @@ export default function({ match }) {
           </option>
           <option selected={product.category === "Lote"}>Lote</option>
         </select>
+        <label>Cidade :</label>
         <input
           name="city"
           placeholder="Cidade"
           onChange={handleChange}
           defaultValue={product.city}
         />
+        <label>Bairro :</label>
         <input
           name="district"
           placeholder="Bairro"
           onChange={handleChange}
           defaultValue={product.district}
         />
+        <label>Rua :</label>
+        <input
+          type="text"
+          name="street"
+          placeholder="Digite aqui"
+          defaultValue={product.street}
+          onChange={handleChange}
+        />
+        <label>Quantidade de quartos :</label>
         <input
           type="number"
           name="bedrooms"
@@ -102,13 +116,31 @@ export default function({ match }) {
           placeholder="Quartos"
           onChange={handleChange}
         />
+        <label>Quantidade de banheiros :</label>
+        <input
+          type="number"
+          name="wc"
+          placeholder="Digite aqui"
+          defaultValue={product.wc}
+          onChange={handleChange}
+        />
+        <label>Quantidade de suites :</label>
+        <input
+          type="number"
+          name="suites"
+          placeholder="Digite aqui"
+          onChange={handleChange}
+          defaultValue={product.suites}
+        />
+        <label>Espaços na garagem :</label>
         <input
           type="number"
           name="parkingSpaces"
           defaultValue={product.parkingSpaces}
-          placeholder="Espaços na garagem"
+          placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Tamanho :</label>
         <input
           type="number"
           name="size"
@@ -116,11 +148,13 @@ export default function({ match }) {
           placeholder="Tamanho"
           onChange={handleChange}
         />
+        <label>Descrição :</label>
         <textarea
           name="description"
           placeholder="Digite a descrição"
           onChange={handleChange}
         />
+        <label>Preço :</label>
         <input
           type="number"
           name="price"

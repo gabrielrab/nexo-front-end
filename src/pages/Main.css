@@ -57,7 +57,7 @@ main .container{
 }
 
 .btn{
-    background: #fcf512;
+    background: #ffe91d;
     padding: 10px 34px;
     border: none;
     margin: 9px;
@@ -75,7 +75,7 @@ main .container{
 }
 
 .btn-desabled:hover{
-    background: #fcf512;
+    background: #ffe91d;
     border: none;
 }
 .foo{
