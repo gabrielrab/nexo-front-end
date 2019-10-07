@@ -7,7 +7,7 @@ nav{
 }
 
 nav .logo{
-    width: 150px;
+    width: 200px;
 }
 
 nav .logo:hover{
@@ -27,7 +27,8 @@ nav .header-nav div{
 }
 
 nav .header-nav div span{
-    font-size: 20px;
+    font-size: 18px;
+    text-align: right;
 }
 
 nav ul{
@@ -94,7 +95,7 @@ nav .list-btns .btn2:hover{
 }
 
 .icon-min{
-    height: 30px;
+    height: 25px;
     margin: 5px;
 }
 
@@ -134,15 +135,19 @@ nav .list-btns .btn2:hover{
 .content-infos .infos{
     flex: 1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
 }
 
 .content-infos .infos span{
     text-align: left;
-    font-size: 18px;
+    font-size: 16px;
     color: #888888;
     margin-right: 5px;
+}
+.content-infos .infos span b{
+    color: black;
+    margin-bottom: 4px;
 }
 .content-price{
     padding: 3px;
@@ -150,14 +155,22 @@ nav .list-btns .btn2:hover{
     justify-content: center;
     flex-direction: column;
 }
+
+.content-price .price{
+    margin-top: 10px;
+    background: transparent 
+}
 .price{
-    background: #fcf512;
+    /* background: #fcf512; */
     color: black;
     padding: 5px;
     font-size: 20px;
     border-radius: 4px;
 }
 
+.skills{
+    margin-top: 22px;
+}
 .skills ul{
     list-style: none;
     display: flex;
@@ -195,6 +208,20 @@ nav .list-btns .btn2:hover{
 }
 
 .option{
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: black;
+}
+
+a{
+    color: black;
+}
+
+.tips{
+    z-index: 2;
+    background: #fcf512;
+    padding: 5px;
+    border-radius: 4px;
+    position: relative;
+    top: -10px;
+    left: 100px;
 }

@@ -77,17 +77,24 @@ export default function Product({ match }) {
         <p>{product.description}</p>
         <div className="skills">
           <ul>
-            <li>
-              <img src={bed} alt="bed-value" className="icon-min" />{" "}
-              {product.bedrooms}
-            </li>
-            <li>
-              <img src={wc} alt="bed-value" className="icon-min" /> {product.wc}
-            </li>
-            <li>
-              <img src={car} alt="bed-value" className="icon-min" />{" "}
-              {product.parkingSpaces}
-            </li>
+            {product.category === "Lote" ? (
+              <></>
+            ) : (
+              <>
+                <li>
+                  <img src={bed} alt="bed-value" className="icon-min" />{" "}
+                  {product.bedrooms}
+                </li>
+                <li>
+                  <img src={wc} alt="bed-value" className="icon-min" />{" "}
+                  {product.wc}
+                </li>
+                <li>
+                  <img src={car} alt="bed-value" className="icon-min" />{" "}
+                  {product.parkingSpaces}
+                </li>
+              </>
+            )}
             <li>
               <img src={fullsize} alt="bed-value" className="icon-min" />{" "}
               {product.size} m²
