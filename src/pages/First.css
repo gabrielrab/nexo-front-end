@@ -3,11 +3,16 @@ nav{
     width: 100vw;
     padding: 20px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
-    border-top: 20px solid  #fcf512;
+    border-top: 20px solid  #ffe91d;
 }
 
 nav .logo{
     width: 200px;
+}
+.barra{
+    width: 100vw;
+    height: 15px;
+    background-color: black;
 }
 
 nav .logo:hover{
@@ -28,6 +33,12 @@ nav .header-nav div{
 
 nav .header-nav div span{
     font-size: 18px;
+}
+
+nav .header-nav div span a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: right;
 }
 
@@ -60,7 +71,7 @@ nav .list-btns{
 }
 
 nav .list-btns .btn1{
-    background: #fcf512;
+    background: #ffe91d;
     padding: 7px 14px;
     border: none;
     margin: 5px;
@@ -78,7 +89,7 @@ nav .list-btns .btn2{
 }
 
 nav .list-btns .btn2:hover{
-    background: #fcf512;
+    background: #ffe91d;
 }
 
 /* MELOOOU */
@@ -102,11 +113,12 @@ nav .list-btns .btn2:hover{
 .product{
     background: white;
     border-radius: 4px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.09);
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
     box-sizing: border-box;
+    border: 1px solid rgb(207, 207, 207);
 }
 
 .product:hover{
@@ -141,9 +153,13 @@ nav .list-btns .btn2:hover{
 
 .content-infos .infos span{
     text-align: left;
-    font-size: 16px;
+    font-size: 14px;
     color: #888888;
     margin-right: 5px;
+    line-height: 25px;
+}
+.content-infos .infos span title{
+    margin-bottom: 10px;
 }
 .content-infos .infos span b{
     color: black;
@@ -218,10 +234,22 @@ a{
 
 .tips{
     z-index: 2;
-    background: #fcf512;
+    background: #ffe91d;
     padding: 5px;
     border-radius: 4px;
     position: relative;
     top: -10px;
     left: 100px;
+}
+
+.icon-wp{
+    height: 18px;
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 767px) and (min-width: 300px){
+    nav .logo{
+        width: 165px;
+        margin-right: 20px;
+    }
 }

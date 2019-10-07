@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import CurrencyInput from "react-currency-format";
 
 import "./First.css";
 
@@ -13,6 +14,7 @@ import fullsize from "../assets/full-size.svg";
 import hand from "../assets/hand.svg";
 import wc from "../assets/wc.svg";
 import street from "../assets/street.svg";
+import wp from "../assets/whatsapp.svg";
 
 export default function() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
@@ -92,6 +94,7 @@ export default function() {
 
   return (
     <>
+      <div className="barra"></div>
       <nav>
         <div className="header-nav">
           <Link to="/login">
@@ -100,16 +103,19 @@ export default function() {
           <div>
             <span>
               <a href="https://api.whatsapp.com/send?phone=5537999263631&text=Ol%C3%A1%2C%20olhei%20alguns%20im%C3%B3veis%20no%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es">
-                Daniel {""}- (37) 99926-3631
+                <img src={wp} alt="whatsapp" className="icon-wp" /> Daniel {""}-
+                (37) 99926-3631
               </a>
             </span>
             <span>
               <a href="https://api.whatsapp.com/send?phone=5537999632301&text=Ol%C3%A1%2C%20olhei%20alguns%20im%C3%B3veis%20no%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es">
+                <img src={wp} alt="whatsapp" className="icon-wp" />
                 Geraldo - (37) 99963-2301
               </a>
             </span>
             <span>
               <a href="https://api.whatsapp.com/send?phone=5537999375320&text=Ol%C3%A1%2C%20olhei%20alguns%20im%C3%B3veis%20no%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es">
+                <img src={wp} alt="whatsapp" className="icon-wp" />
                 Adriano - (37) 99937-5320
               </a>
             </span>
@@ -129,7 +135,7 @@ export default function() {
           </li>
 
           <li>
-            <span>O qual tipo de imóvel ?</span>
+            <span>Tipo de imóvel:</span>
             <br />
             <label>
               <select name="category" onChange={handleChange}>
@@ -137,6 +143,12 @@ export default function() {
                 <option>Casa</option>
                 <option>Apartamento</option>
                 <option>Lote</option>
+                <option value="terreno rural">Terreno Rural</option>
+                <option value="sitio">Sitio</option>
+                <option value="chacara">Chacara</option>
+                <option value="kitnet">Kitnet</option>
+                <option value="fazenda">Fazenda</option>
+                <option value="galpao industrial">Galpão Industrial</option>
               </select>
             </label>
           </li>
@@ -247,11 +259,25 @@ export default function() {
               <li>
                 <label>
                   <img src={hand} alt="Preco" className="icon" />
+
                   <input
                     type="number"
                     name="price"
                     placeholder="Preco"
                     onChange={handleNumero}
+                  />
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <img src={hand} alt="Preco" className="icon" />
+
+                  <input
+                    type="number"
+                    name="code"
+                    placeholder="Codigo"
+                    onChange={handleChange}
                   />
                 </label>
               </li>
@@ -286,7 +312,7 @@ export default function() {
                   <div className="content-infos">
                     <div className="infos">
                       <span>
-                        <b>{product.label}</b>
+                        <b className="title">{product.label}</b>
                         <br />
                         B. {product.district} - {product.city}
                       </span>
@@ -325,7 +351,15 @@ export default function() {
                         </li>
                       </ul>
                       <div className="content-price">
-                        <label className="price">R$ {product.price},00</label>
+                        <label className="price">
+                          R${" "}
+                          <CurrencyInput
+                            value={product.price}
+                            displayType="text"
+                            thousandSeparator={true}
+                            decimalSeparator={"."}
+                          />
+                        </label>
                       </div>
                     </div>
                   </div>

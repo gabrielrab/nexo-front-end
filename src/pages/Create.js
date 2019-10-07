@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Line } from "rc-progress";
+import CurrencyInput from "react-currency-format";
 
 import "./Create.css";
 import api from "../services/api";
@@ -97,6 +98,12 @@ export default function() {
           <option>Casa</option>
           <option>Apartamento</option>
           <option>Lote</option>
+          <option>Terreno Rural</option>
+          <option>Sitio</option>
+          <option>Chacara</option>
+          <option>Kitnet</option>
+          <option>Fazenda</option>
+          <option>Galpão Industrial</option>
         </select>
         <label>Cidade :</label>
         <input name="city" placeholder="Digite aqui" onChange={handleChange} />
@@ -155,9 +162,16 @@ export default function() {
           onChange={handleChange}
         />
         <label>Preço :</label>
-        <input
-          type="number"
+        {/* <CurrencyInput
+          thousandSeparator={true}
           name="price"
+          type="number"
+          placeholder="Digite aqui"
+          onChange={handleChange}
+        /> */}
+        <input
+          name="price"
+          type="number"
           placeholder="Digite aqui"
           onChange={handleChange}
         />

@@ -28,8 +28,11 @@ body{
     justify-content: space-between;
     margin-bottom: 10px;
 }
+.description-header label .product-code{
+    font-size: 16px;
+}
 .price{
-    background: #fcf512;
+    background: #ffe91d;
     padding: 8px;
     font-size: 23px;
     border-radius: 4px;
@@ -45,7 +48,7 @@ body{
 }
 .content article{
     margin-top: 10px; 
-    background: #fcf512;
+    background: #ffe91d;
     height: 100px;
     display: flex;
     text-align: center;
