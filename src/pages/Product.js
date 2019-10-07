@@ -6,7 +6,7 @@ import "react-awesome-slider/dist/styles.css";
 import "./Product.css";
 
 //Imagens
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 import car from "../assets/car.svg";
 import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
@@ -47,7 +47,7 @@ export default function Product({ match }) {
     <div className="content">
       <nav className="nav">
         <Link to="/">
-          <img src={logo} alt="Nexo" className="logo" />
+          <img src={logo} alt="Nexo" className="logo-png" />
         </Link>
         <p>Os melhores imóveis para você!</p>
       </nav>
@@ -107,7 +107,7 @@ export default function Product({ match }) {
         </article>
       </section>
       <footer>
-        <img src={logo} alt="Nexo" />
+        <img src={logo} alt="Nexo" className="logo-png" />
         <br />
         Desenvoldo por Gabriel Rabelo
       </footer>

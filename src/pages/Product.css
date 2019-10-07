@@ -12,6 +12,10 @@ body{
     align-items: center;
     text-align: center;
 }
+
+.content .nav .logo-png{
+    width: 180px;
+}
 .content-description{
     width: 100vw;
     max-width: 800px;
@@ -56,6 +60,10 @@ footer{
     height: auto;
     padding: 20px;
     margin-top: 50px;
+}
+
+footer .logo-png{
+    width: 200px;
 }
 .logo{
     margin-right: 5px;
