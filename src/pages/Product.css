@@ -49,7 +49,8 @@ body{
 .content article{
     margin-top: 10px; 
     background: #ffe91d;
-    height: 100px;
+    height: auto;
+    padding: 10px;
     display: flex;
     text-align: center;
     justify-content: center;

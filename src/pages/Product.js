@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
+import ReactMarkdown from "react-markdown";
 
 import "./Product.css";
 
@@ -10,9 +11,7 @@ import logo from "../assets/logo.png";
 import car from "../assets/car.svg";
 import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
-import hand from "../assets/hand.svg";
 import wc from "../assets/wc.svg";
-import street from "../assets/street.svg";
 import wp from "../assets/whatsapp.svg";
 
 import api from "../services/api";
@@ -70,14 +69,13 @@ export default function Product({ match }) {
             <h1>{product.label}</h1>
             <span className="cinza">
               {product.category === "Lote" ? <></> : <>{product.street}, </>} B.{" "}
-              {product.district} - {product.city}
+              {product.district} <br /> {product.city}
             </span>
           </label>
 
           <label className="price">R$ {product.price},00</label>
         </div>
-
-        <p>{product.description}</p>
+        <ReactMarkdown source={product.description} escapeHtml={false} />
         <div className="skills">
           <ul>
             {product.category === "Lote" ? (
@@ -119,6 +117,27 @@ export default function Product({ match }) {
             Adriano - (37) 99937-5320
           </a>
         </article>
+        <div className="skills">
+          <ul>
+            <li>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
+                target="_blank"
+              >
+                Facebook
+              </a>
+            </li>
+
+            <li>
+              <a
+                href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
+                data-action="share/whatsapp/share"
+              >
+                Whatsapp
+              </a>
+            </li>
+          </ul>
+        </div>
       </section>
       <footer>
         <img src={logo} alt="Nexo" className="logo-png" />
