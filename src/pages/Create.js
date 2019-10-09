@@ -162,16 +162,10 @@ export default function() {
           onChange={handleChange}
         />
         <label>Preço :</label>
-        {/* <CurrencyInput
-          thousandSeparator={true}
+        <CurrencyInput
+          thousandSeparator="."
+          decimalSeparator=","
           name="price"
-          type="number"
-          placeholder="Digite aqui"
-          onChange={handleChange}
-        /> */}
-        <input
-          name="price"
-          type="number"
           placeholder="Digite aqui"
           onChange={handleChange}
         />

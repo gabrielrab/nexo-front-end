@@ -92,6 +92,11 @@ export default function() {
     filters === false ? setOption("- Filtros") : setOption("+ Filtros");
   }
 
+  function aopa() {
+    alert("Busca sem nenhum resultado. Os filtros foram redefinidos");
+    handleRefresh();
+  }
+
   return (
     <>
       <div className="barra"></div>
@@ -314,7 +319,7 @@ export default function() {
                       <span>
                         <b className="title">{product.label}</b>
                         <br />
-                        B. {product.district} - {product.city}
+                        B. {product.district} <br /> {product.city}
                       </span>
                     </div>
                     <div className="skills">
@@ -356,9 +361,10 @@ export default function() {
                           <CurrencyInput
                             value={product.price}
                             displayType="text"
-                            thousandSeparator={true}
-                            decimalSeparator={"."}
+                            thousandSeparator="."
+                            decimalSeparator=","
                           />
+                          ,00
                         </label>
                       </div>
                     </div>
@@ -422,7 +428,16 @@ export default function() {
                         </li>
                       </ul>
                       <div className="content-price">
-                        <label className="price">R$ {product.price},00</label>
+                        <label className="price">
+                          R${" "}
+                          <CurrencyInput
+                            value={product.price}
+                            displayType="text"
+                            thousandSeparator="."
+                            decimalSeparator=","
+                          />
+                          ,00
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -432,6 +447,7 @@ export default function() {
           </>
         ) : (
           <div className="empty">
+            {aopa()}
             Aguarde,
             <br />
             <p>
