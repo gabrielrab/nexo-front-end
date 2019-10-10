@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./Create.css";
 import api from "../services/api";
 
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 
 export default function({ match }) {
   const { id } = match.params;
@@ -17,7 +17,6 @@ export default function({ match }) {
   useEffect(() => {
     async function loadProduct() {
       const { data } = await api.get(`/product/${id}`);
-      debugger;
       setProduct(data.product);
     }
     loadProduct();
@@ -52,7 +51,7 @@ export default function({ match }) {
   return (
     <div className="create-container">
       <Link to="/">
-        <img src={logo} alt="Nexo" />
+        <img src={logo} alt="Nexo" className="logo-png" />
       </Link>
       <h1>Editar Anúncio</h1>
       <form onSubmit={onSubmited}>

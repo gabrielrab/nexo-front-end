@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
 import ReactMarkdown from "react-markdown";
+import CurrencyInput from "react-currency-format";
 
 import "./Product.css";
 
@@ -13,6 +14,7 @@ import bed from "../assets/bed.svg";
 import fullsize from "../assets/full-size.svg";
 import wc from "../assets/wc.svg";
 import wp from "../assets/whatsapp.svg";
+import fb from "../assets/facebook.svg";
 
 import api from "../services/api";
 
@@ -68,17 +70,42 @@ export default function Product({ match }) {
             </h1>
             <h1>{product.label}</h1>
             <span className="cinza">
-              {product.category === "Lote" ? <></> : <>{product.street}, </>} B.{" "}
-              {product.district} <br /> {product.city}
+              {product.category === "Lote" ||
+              product.category === "Sitio" ||
+              product.category === "Fazenda" ||
+              product.category === "Chacara" ? (
+                <>{product.district}</>
+              ) : (
+                <>
+                  {product.street}, B. {product.district} <br /> {product.city}
+                </>
+              )}{" "}
             </span>
           </label>
 
-          <label className="price">R$ {product.price},00</label>
+          <label className="price">
+            R$
+            <CurrencyInput
+              value={product.price}
+              displayType="text"
+              thousandSeparator="."
+              decimalSeparator=","
+              className="space"
+            />
+            ,00
+          </label>
         </div>
-        <ReactMarkdown source={product.description} escapeHtml={false} />
+        <ReactMarkdown
+          source={product.description}
+          escapeHtml={false}
+          className="markdown"
+        />
         <div className="skills">
           <ul>
-            {product.category === "Lote" ? (
+            {product.category === "Lote" ||
+            product.category === "Sitio" ||
+            product.category === "Fazenda" ||
+            product.category === "Chacara" ? (
               <></>
             ) : (
               <>
@@ -98,7 +125,14 @@ export default function Product({ match }) {
             )}
             <li>
               <img src={fullsize} alt="bed-value" className="icon-min" />{" "}
-              {product.size} m²
+              <CurrencyInput
+                value={product.size}
+                displayType="text"
+                thousandSeparator="."
+                decimalSeparator=","
+                className="space"
+              />
+              m²
             </li>
           </ul>
         </div>
@@ -117,26 +151,19 @@ export default function Product({ match }) {
             Adriano - (37) 99937-5320
           </a>
         </article>
-        <div className="skills">
-          <ul>
-            <li>
-              <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
-                target="_blank"
-              >
-                Facebook
-              </a>
-            </li>
-
-            <li>
-              <a
-                href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
-                data-action="share/whatsapp/share"
-              >
-                Whatsapp
-              </a>
-            </li>
-          </ul>
+        <div className="share">
+          Compartilhe:{" "}
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
+          >
+            <img src={fb} alt="whatsapp" className="icon-md" />
+          </a>
+          <a
+            href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
+            data-action="share/whatsapp/share"
+          >
+            <img src={wp} alt="whatsapp" className="icon-md" />
+          </a>
         </div>
       </section>
       <footer>

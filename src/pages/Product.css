@@ -18,7 +18,7 @@ body{
 }
 .content-description{
     width: 100vw;
-    max-width: 800px;
+    max-width: 950px;
     margin-top: 10px;
     padding: 10px;
 }
@@ -29,22 +29,26 @@ body{
     margin-bottom: 10px;
 }
 .description-header label .product-code{
-    font-size: 16px;
+    font-size: 10px;
+    color: blue;
+    margin-bottom: 8px;
 }
 .price{
     background: #ffe91d;
     padding: 8px;
-    font-size: 23px;
+    font-size: 18px;
     border-radius: 4px;
     text-align: center;
 }
 .content-description p{
-    color: #474747;
-    margin-bottom: 10px;
-    text-align: justify;
+    color: #8d8888;
+    margin-bottom: 5px;
+    font-size: 14px;
+    text-align: left;
 }
 .cinza{
     color: #474747;
+    line-height: 24px;
 }
 .content article{
     margin-top: 10px; 
@@ -73,8 +77,35 @@ footer .logo-png{
     margin-right: 5px;
 }
 .slide{
-    max-width: 800px;
+    max-width: 950px;
 }
 .aws-sld__bullets{
     display: none;
+}
+.icon-md{
+    height: 25px;
+    margin: 10px;
+}
+.share{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.space{
+    margin-left: 5px;
+    margin-right: 5px; 
+}
+article h1{
+    margin-bottom: 10px;
+}
+@media screen and (max-width: 767px) and (min-width: 300px){
+    .markdown{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    article h1{
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
 }

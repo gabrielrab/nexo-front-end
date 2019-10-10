@@ -13,10 +13,11 @@ import logo from "../assets/logo.png";
 
 export default function() {
   const [
-    { values, file },
+    { values, file, thumb },
     handleChange,
     handleSubmit,
-    handleChangeImages
+    handleChangeImages,
+    handleChangeThumb
   ] = useForm();
   const [loading, setLoading] = useState(0);
   const [progress, setProgress] = useState("Enviar");
@@ -31,6 +32,10 @@ export default function() {
     for (i = 0; i < file.length; i++) {
       formData.append("file", file[i]);
     }
+    for (i = 0; i < file.length; i++) {
+      formData.append("thumb", thumb[i]);
+    }
+
     formData.append("label", values["label"]);
     formData.append("option", values["option"]);
     formData.append("category", values["category"]);
@@ -62,6 +67,7 @@ export default function() {
           toast.error(
             "Erro! Tente novamente mais tarde, ou contate o desenvolvedor"
           );
+          console.log(err);
         });
       console.log(response);
     } catch (error) {
@@ -76,7 +82,7 @@ export default function() {
       </Link>
       <h1>Criar Anúncio</h1>
       <form onSubmit={handleSubmit(enviarProduto)}>
-        <div class="form-group">
+        <div className="form-group">
           <ToastContainer />
         </div>
         <label>Titulo:</label>
@@ -169,6 +175,9 @@ export default function() {
           placeholder="Digite aqui"
           onChange={handleChange}
         />
+        <label>Foto pricipal :</label>
+        <input type="file" name="thumb" onChange={handleChangeThumb} />
+        <label>Imagens :</label>
         <input
           type="file"
           name="file[]"

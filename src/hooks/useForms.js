@@ -3,6 +3,7 @@ import { useState } from "react";
 const useForm = callback => {
   const [values, setValues] = useState({});
   const [file, setFile] = useState({});
+  const [thumb, setThumb] = useState({});
   const [loading, setLoading] = useState(false);
 
   const handleChange = event => {
@@ -16,6 +17,10 @@ const useForm = callback => {
     setFile(event.target.files);
   };
 
+  const handleChangeThumb = event => {
+    setThumb(event.target.files);
+  };
+
   const handleSubmit = callback => async event => {
     event.preventDefault();
 
@@ -24,10 +29,11 @@ const useForm = callback => {
     setLoading(false);
   };
   return [
-    { values, loading, file },
+    { values, loading, file, thumb },
     handleChange,
     handleSubmit,
-    handleChangeImages
+    handleChangeImages,
+    handleChangeThumb
   ];
 };
 

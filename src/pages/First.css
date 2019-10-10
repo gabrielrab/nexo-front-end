@@ -110,6 +110,11 @@ nav .list-btns .btn2:hover{
     margin: 5px;
 }
 
+.icon-bar{
+    height: 30px;
+    margin: 5px;
+}
+
 .product{
     background: white;
     border-radius: 4px;
@@ -147,7 +152,7 @@ nav .list-btns .btn2:hover{
 .content-infos .infos{
     flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
 }
 
@@ -246,10 +251,22 @@ a{
     height: 18px;
     margin-right: 5px;
 }
-
+.share-first{
+    display: flex;
+    justify-content: flex-end;
+}
 @media screen and (max-width: 767px) and (min-width: 300px){
     nav .logo{
-        width: 165px;
-        margin-right: 20px;
+        width: 140px;
+        margin-right: 5px;
+    }
+
+    nav .header-nav div span{
+        font-size: 12px;
+    }
+
+    .product{
+        max-width: 95vw;
+        margin-left: 10px; 
     }
 }
