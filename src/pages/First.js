@@ -46,7 +46,7 @@ export default function() {
           el => el[name] === value || el[name] === parseInt(value)
         ));
 
-    setApply(true);
+    //setApply(true);
     await setProducts(filtered);
   }
 
@@ -58,7 +58,7 @@ export default function() {
       ? (filtered = original.filter(el => el[name] === parseInt(value)))
       : (filtered = products.filter(el => el[name] === parseInt(value)));
 
-    setApply(true);
+    // setApply(true);
     await setProducts(filtered);
     debugger;
   }
@@ -81,7 +81,7 @@ export default function() {
           return lc.includes(filter);
         }));
 
-    setApply(true);
+    //setApply(true);
     await setProducts(filtered);
   }
 
@@ -94,11 +94,12 @@ export default function() {
       ? (filtered = original.filter(el => el[name] >= parseInt(value)))
       : (filtered = products.filter(el => el[name] >= parseInt(value)));
 
-    setApply(true);
+    // setApply(true);
     await setProducts(filtered);
   }
 
   function handleRefresh() {
+    setApply("false");
     window.location.reload();
   }
 
@@ -107,9 +108,10 @@ export default function() {
     filters === false ? setOption("- Filtros") : setOption("+ Filtros");
   }
 
-  function aopa() {
-    alert("Busca sem nenhum resultado. Os filtros foram redefinidos");
-    handleRefresh();
+  function handleSubmit(event) {
+    event.preventDefault();
+    alert("apply");
+    setApply(true);
   }
 
   return (
@@ -312,6 +314,9 @@ export default function() {
           <button className="btn1" onClick={handleRefresh}>
             Limpar
           </button>
+          <button className="btn1" onClick={handleSubmit}>
+            Buscar
+          </button>
         </div>
       </nav>
       <div className="main">
@@ -410,12 +415,12 @@ export default function() {
                       </div>
                       <span className="share-first">
                         <a
-                          href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
+                          href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/`}
                         >
                           <img src={fb} alt="whatsapp" className="icon-md" />
                         </a>
                         <a
-                          href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
+                          href={`whatsapp://send?text=https://nexo-front.herokuapp.com/`}
                           data-action="share/whatsapp/share"
                         >
                           <img src={wp} alt="whatsapp" className="icon-md" />
@@ -539,7 +544,6 @@ export default function() {
           </>
         ) : (
           <div className="empty">
-            {aopa()}
             Aguarde,
             <br />
             <p>

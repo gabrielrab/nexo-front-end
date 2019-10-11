@@ -25,25 +25,27 @@
 }
 
 .create-container form input, .create-container form select{
-    border: 1px solid #ddd;
+    border: 1px solid rgb(207, 207, 207);
     border-radius: 4px;
     margin-bottom: 5px;
     height: 45px;
     padding: 0 18px;
     font-size: 14px;
     color: #666;
+    background-color: #f8f8f8;
     width: 100%;
 }
 
 select, textarea, option, input{
-    border: none;
-    background: rgb(248, 248, 248);
+    border: 1px solid rgb(207, 207, 207);
     border-radius: 4px;
     margin-bottom: 5px;
     height: 45px;
     padding: 0 18px;
     font-size: 14px;
-    color: #666; 
+    color: #666;
+    background-color: #f8f8f8;
+    width: 100%;
 }
 
 select, textarea, input::placeholder{
