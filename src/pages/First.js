@@ -22,6 +22,7 @@ export default function() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
   const [products, setProducts] = useState([]); //aqui deve receber os valores após o filtro
   const [apply, setApply] = useState(false);
+  const [fill, setFill] = useState(false);
   const [filters, setFilters] = useState(false);
   const [option, setOption] = useState("+ Filtros");
 
@@ -38,7 +39,7 @@ export default function() {
     const { value, name } = event.target;
     let filtered;
 
-    apply === false
+    fill === false
       ? (filtered = original.filter(
           el => el[name] === value || el[name] === parseInt(value)
         ))
@@ -46,7 +47,7 @@ export default function() {
           el => el[name] === value || el[name] === parseInt(value)
         ));
 
-    //setApply(true);
+    setFill(true);
     await setProducts(filtered);
   }
 
@@ -54,11 +55,11 @@ export default function() {
     const { value, name } = event.target;
 
     let filtered;
-    apply === false
+    fill === false
       ? (filtered = original.filter(el => el[name] === parseInt(value)))
       : (filtered = products.filter(el => el[name] === parseInt(value)));
 
-    // setApply(true);
+    setFill(true);
     await setProducts(filtered);
     debugger;
   }
@@ -69,7 +70,7 @@ export default function() {
 
     let filtered;
 
-    apply === false
+    fill === false
       ? (filtered = original.filter(el => {
           const lc = el[name].toLowerCase();
           const filter = value.toLowerCase();
@@ -81,7 +82,7 @@ export default function() {
           return lc.includes(filter);
         }));
 
-    //setApply(true);
+    setFill(true);
     await setProducts(filtered);
   }
 
@@ -90,11 +91,11 @@ export default function() {
     const { value, name } = event.target;
 
     let filtered;
-    apply === false
+    fill === false
       ? (filtered = original.filter(el => el[name] >= parseInt(value)))
       : (filtered = products.filter(el => el[name] >= parseInt(value)));
 
-    // setApply(true);
+    setFill(true);
     await setProducts(filtered);
   }
 
