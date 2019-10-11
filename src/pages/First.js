@@ -340,7 +340,9 @@ export default function() {
                         {product.category === "Lote" ||
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
-                        product.category === "Chacara" ? (
+                        product.category === "Chacara" ||
+                        product.category === "Galpão Industrial" ||
+                        product.category === "Terreno Rural" ? (
                           <>
                             {product.district} - {product.city}
                           </>
@@ -357,7 +359,9 @@ export default function() {
                         {product.category === "Lote" ||
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
-                        product.category === "Chacara" ? (
+                        product.category === "Chacara" ||
+                        product.category === "Galpão Industrial" ||
+                        product.category === "Terreno Rural" ? (
                           <></>
                         ) : (
                           <>
@@ -458,7 +462,9 @@ export default function() {
                         {product.category === "Lote" ||
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
-                        product.category === "Chacara" ? (
+                        product.category === "Chacara" ||
+                        product.category === "Galpão Industrial" ||
+                        product.category === "Terreno Rural" ? (
                           <>
                             {product.district} - {product.city}
                           </>
@@ -475,7 +481,9 @@ export default function() {
                         {product.category === "Lote" ||
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
-                        product.category === "Chacara" ? (
+                        product.category === "Chacara" ||
+                        product.category === "Galpão Industrial" ||
+                        product.category === "Terreno Rural" ? (
                           <></>
                         ) : (
                           <>
