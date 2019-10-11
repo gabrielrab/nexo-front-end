@@ -165,12 +165,12 @@ export default function() {
                 <option>Casa</option>
                 <option>Apartamento</option>
                 <option>Lote</option>
-                <option value="terreno rural">Terreno Rural</option>
-                <option value="sitio">Sitio</option>
-                <option value="chacara">Chacara</option>
-                <option value="kitnet">Kitnet</option>
-                <option value="fazenda">Fazenda</option>
-                <option value="galpao industrial">Galpão Industrial</option>
+                <option>Terreno Rural</option>
+                <option>Sitio</option>
+                <option>Chacara</option>
+                <option>Kitnet</option>
+                <option>Fazenda</option>
+                <option>Galpão Industrial</option>
               </select>
             </label>
           </li>
@@ -566,11 +566,8 @@ export default function() {
           </>
         ) : (
           <div className="empty">
-            Aguarde,
+            IMÓVEL NÃO ENCONTRADO! REDEFINA A BUSCA
             <br />
-            <p>
-              ou tente <a href="/busca">redefinir busca</a>
-            </p>
           </div>
         )}
       </div>
