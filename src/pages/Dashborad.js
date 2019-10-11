@@ -76,7 +76,7 @@ export default function({ match, history }) {
         <div className="empty">
           Aguarde.
           <br />
-          Ou tente redefinir a busca.
+          Nenhum imovel cadastrado.
         </div>
       )}
     </div>
