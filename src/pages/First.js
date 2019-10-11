@@ -15,6 +15,8 @@ import hand from "../assets/hand.svg";
 import wc from "../assets/wc.svg";
 import street from "../assets/street.svg";
 import wp from "../assets/whatsapp.svg";
+import fb from "../assets/facebook.svg";
+import barCode from "../assets/bar-code.svg";
 
 export default function() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
@@ -44,8 +46,21 @@ export default function() {
           el => el[name] === value || el[name] === parseInt(value)
         ));
 
-    setApply(true);
+    //setApply(true);
     await setProducts(filtered);
+  }
+
+  async function handleChangeCode(event) {
+    const { value, name } = event.target;
+
+    let filtered;
+    apply === false
+      ? (filtered = original.filter(el => el[name] === parseInt(value)))
+      : (filtered = products.filter(el => el[name] === parseInt(value)));
+
+    // setApply(true);
+    await setProducts(filtered);
+    debugger;
   }
 
   async function handleChangeWord(event) {
@@ -66,7 +81,7 @@ export default function() {
           return lc.includes(filter);
         }));
 
-    setApply(true);
+    //setApply(true);
     await setProducts(filtered);
   }
 
@@ -79,11 +94,12 @@ export default function() {
       ? (filtered = original.filter(el => el[name] >= parseInt(value)))
       : (filtered = products.filter(el => el[name] >= parseInt(value)));
 
-    setApply(true);
+    // setApply(true);
     await setProducts(filtered);
   }
 
   function handleRefresh() {
+    setApply("false");
     window.location.reload();
   }
 
@@ -92,9 +108,10 @@ export default function() {
     filters === false ? setOption("- Filtros") : setOption("+ Filtros");
   }
 
-  function aopa() {
-    alert("Busca sem nenhum resultado. Os filtros foram redefinidos");
-    handleRefresh();
+  function handleSubmit(event) {
+    event.preventDefault();
+    alert("apply");
+    setApply(true);
   }
 
   return (
@@ -108,7 +125,7 @@ export default function() {
           <div>
             <span>
               <a href="https://api.whatsapp.com/send?phone=5537999263631&text=Ol%C3%A1%2C%20olhei%20alguns%20im%C3%B3veis%20no%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es">
-                <img src={wp} alt="whatsapp" className="icon-wp" /> Daniel {""}-
+                <img src={wp} alt="whatsapp" className="icon-wp" /> Daniel -
                 (37) 99926-3631
               </a>
             </span>
@@ -276,13 +293,12 @@ export default function() {
 
               <li>
                 <label>
-                  <img src={hand} alt="Preco" className="icon" />
-
+                  <img src={barCode} alt="Codigo" className="icon-bar" />
                   <input
                     type="number"
                     name="code"
                     placeholder="Codigo"
-                    onChange={handleChange}
+                    onChange={handleChangeCode}
                   />
                 </label>
               </li>
@@ -298,6 +314,9 @@ export default function() {
           <button className="btn1" onClick={handleRefresh}>
             Limpar
           </button>
+          <button className="btn1" onClick={handleSubmit}>
+            Buscar
+          </button>
         </div>
       </nav>
       <div className="main">
@@ -308,7 +327,7 @@ export default function() {
                 <div className="product" key={product._id}>
                   <div className="content-img">
                     <img
-                      src={product.imagesURL[0].url}
+                      src={product.thumb || product.imagesURL[0].url}
                       alt=""
                       className="img-product"
                     />
@@ -319,7 +338,17 @@ export default function() {
                       <span>
                         <b className="title">{product.label}</b>
                         <br />
-                        B. {product.district} <br /> {product.city}
+                        {product.category === "Lote" ||
+                        product.category === "Sitio" ||
+                        product.category === "Fazenda" ||
+                        product.category === "Chacara" ? (
+                          <>{product.district}</>
+                        ) : (
+                          <>
+                            {product.street}, B. {product.district} <br />{" "}
+                            {product.city}
+                          </>
+                        )}
                       </span>
                     </div>
                     <div className="skills">
@@ -336,6 +365,16 @@ export default function() {
                               />
                               {product.bedrooms}
                             </li>
+
+                            <li>
+                              <img
+                                src={wc}
+                                alt="bed-value"
+                                className="icon-min"
+                              />
+                              {product.wc}
+                            </li>
+
                             <li>
                               <img
                                 src={car}
@@ -352,7 +391,14 @@ export default function() {
                             alt="bed-value"
                             className="icon-min"
                           />
-                          {product.size} m²
+                          <CurrencyInput
+                            value={product.size}
+                            displayType="text"
+                            thousandSeparator="."
+                            decimalSeparator=","
+                            className="space"
+                          />{" "}
+                          m²
                         </li>
                       </ul>
                       <div className="content-price">
@@ -367,6 +413,19 @@ export default function() {
                           ,00
                         </label>
                       </div>
+                      <span className="share-first">
+                        <a
+                          href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/`}
+                        >
+                          <img src={fb} alt="whatsapp" className="icon-md" />
+                        </a>
+                        <a
+                          href={`whatsapp://send?text=https://nexo-front.herokuapp.com/`}
+                          data-action="share/whatsapp/share"
+                        >
+                          <img src={wp} alt="whatsapp" className="icon-md" />
+                        </a>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -391,7 +450,17 @@ export default function() {
                       <span>
                         <b>{product.label}</b>
                         <br />
-                        B. {product.district} - {product.city}
+                        {product.category === "Lote" ||
+                        product.category === "Sitio" ||
+                        product.category === "Fazenda" ||
+                        product.category === "Chacara" ? (
+                          <>{product.district}</>
+                        ) : (
+                          <>
+                            {product.street}, B. {product.district} <br />{" "}
+                            {product.city}
+                          </>
+                        )}
                       </span>
                     </div>
                     <div className="skills">
@@ -410,6 +479,14 @@ export default function() {
                             </li>
                             <li>
                               <img
+                                src={wc}
+                                alt="bed-value"
+                                className="icon-min"
+                              />
+                              {product.wc}
+                            </li>
+                            <li>
+                              <img
                                 src={car}
                                 alt="bed-value"
                                 className="icon-min"
@@ -424,7 +501,14 @@ export default function() {
                             alt="bed-value"
                             className="icon-min"
                           />
-                          {product.size} m²
+                          <CurrencyInput
+                            value={product.size}
+                            displayType="text"
+                            thousandSeparator="."
+                            decimalSeparator=","
+                            className="space"
+                          />{" "}
+                          m²
                         </li>
                       </ul>
                       <div className="content-price">
@@ -439,6 +523,19 @@ export default function() {
                           ,00
                         </label>
                       </div>
+                      <span className="share-first">
+                        <a
+                          href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
+                        >
+                          <img src={fb} alt="whatsapp" className="icon-md" />
+                        </a>
+                        <a
+                          href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
+                          data-action="share/whatsapp/share"
+                        >
+                          <img src={wp} alt="whatsapp" className="icon-md" />
+                        </a>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -447,7 +544,6 @@ export default function() {
           </>
         ) : (
           <div className="empty">
-            {aopa()}
             Aguarde,
             <br />
             <p>

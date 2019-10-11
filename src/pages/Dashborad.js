@@ -27,8 +27,6 @@ export default function({ match, history }) {
     loadProducts();
   }, []);
 
-  console.log(products);
-
   return (
     <div className="container">
       <Link to="/">
