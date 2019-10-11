@@ -74,7 +74,9 @@ export default function Product({ match }) {
               product.category === "Sitio" ||
               product.category === "Fazenda" ||
               product.category === "Chacara" ? (
-                <>{product.district}</>
+                <>
+                  {product.district} - {product.city}
+                </>
               ) : (
                 <>
                   {product.street}, B. {product.district} <br /> {product.city}

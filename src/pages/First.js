@@ -110,7 +110,6 @@ export default function() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    alert("apply");
     setApply(true);
   }
 
@@ -323,8 +322,8 @@ export default function() {
         {apply === false ? (
           <>
             {original.map(product => (
-              <Link to={`/product/${product._id}`} key={product._id}>
-                <div className="product" key={product._id}>
+              <div className="product" key={product._id}>
+                <Link to={`/product/${product._id}`} key={product._id}>
                   <div className="content-img">
                     <img
                       src={product.thumb || product.imagesURL[0].url}
@@ -342,7 +341,9 @@ export default function() {
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
                         product.category === "Chacara" ? (
-                          <>{product.district}</>
+                          <>
+                            {product.district} - {product.city}
+                          </>
                         ) : (
                           <>
                             {product.street}, B. {product.district} <br />{" "}
@@ -353,7 +354,10 @@ export default function() {
                     </div>
                     <div className="skills">
                       <ul>
-                        {product.category === "Lote" ? (
+                        {product.category === "Lote" ||
+                        product.category === "Sitio" ||
+                        product.category === "Fazenda" ||
+                        product.category === "Chacara" ? (
                           <></>
                         ) : (
                           <>
@@ -413,33 +417,34 @@ export default function() {
                           ,00
                         </label>
                       </div>
-                      <span className="share-first">
-                        <a
-                          href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/`}
-                        >
-                          <img src={fb} alt="whatsapp" className="icon-md" />
-                        </a>
-                        <a
-                          href={`whatsapp://send?text=https://nexo-front.herokuapp.com/`}
-                          data-action="share/whatsapp/share"
-                        >
-                          <img src={wp} alt="whatsapp" className="icon-md" />
-                        </a>
-                      </span>
                     </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+                <span className="share-first">
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
+                    target="_self"
+                  >
+                    <img src={fb} alt="whatsapp" className="icon-md" />
+                  </a>
+                  <a
+                    href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
+                    data-action="share/whatsapp/share"
+                  >
+                    <img src={wp} alt="whatsapp" className="icon-md" />
+                  </a>
+                </span>
+              </div>
             ))}
           </>
         ) : products.length > 0 ? (
           <>
             {products.map(product => (
-              <Link to={`/product/${product._id}`} key={product._id}>
-                <div className="product" key={product._id}>
+              <div className="product" key={product._id}>
+                <Link to={`/product/${product._id}`} key={product._id}>
                   <div className="content-img">
                     <img
-                      src={product.imagesURL[0].url}
+                      src={product.thumb || product.imagesURL[0].url}
                       alt=""
                       className="img-product"
                     />
@@ -448,13 +453,15 @@ export default function() {
                   <div className="content-infos">
                     <div className="infos">
                       <span>
-                        <b>{product.label}</b>
+                        <b className="title">{product.label}</b>
                         <br />
                         {product.category === "Lote" ||
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
                         product.category === "Chacara" ? (
-                          <>{product.district}</>
+                          <>
+                            {product.district} - {product.city}
+                          </>
                         ) : (
                           <>
                             {product.street}, B. {product.district} <br />{" "}
@@ -465,7 +472,10 @@ export default function() {
                     </div>
                     <div className="skills">
                       <ul>
-                        {product.category === "Lote" ? (
+                        {product.category === "Lote" ||
+                        product.category === "Sitio" ||
+                        product.category === "Fazenda" ||
+                        product.category === "Chacara" ? (
                           <></>
                         ) : (
                           <>
@@ -477,6 +487,7 @@ export default function() {
                               />
                               {product.bedrooms}
                             </li>
+
                             <li>
                               <img
                                 src={wc}
@@ -485,6 +496,7 @@ export default function() {
                               />
                               {product.wc}
                             </li>
+
                             <li>
                               <img
                                 src={car}
@@ -523,23 +535,24 @@ export default function() {
                           ,00
                         </label>
                       </div>
-                      <span className="share-first">
-                        <a
-                          href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
-                        >
-                          <img src={fb} alt="whatsapp" className="icon-md" />
-                        </a>
-                        <a
-                          href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
-                          data-action="share/whatsapp/share"
-                        >
-                          <img src={wp} alt="whatsapp" className="icon-md" />
-                        </a>
-                      </span>
                     </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+                <span className="share-first">
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
+                    target="_self"
+                  >
+                    <img src={fb} alt="whatsapp" className="icon-md" />
+                  </a>
+                  <a
+                    href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
+                    data-action="share/whatsapp/share"
+                  >
+                    <img src={wp} alt="whatsapp" className="icon-md" />
+                  </a>
+                </span>
+              </div>
             ))}
           </>
         ) : (
