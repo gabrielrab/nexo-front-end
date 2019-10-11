@@ -123,7 +123,7 @@ nav .list-btns .btn2:hover{
     flex-direction: column;
     margin-bottom: 15px;
     box-sizing: border-box;
-    border: 1px solid rgb(207, 207, 207);
+    border: 1px solid #cfcfcf;
 }
 
 .product:hover{
@@ -252,6 +252,7 @@ a{
     margin-right: 5px;
 }
 .share-first{
+    z-index: 1;
     display: flex;
     justify-content: flex-end;
 }

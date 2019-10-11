@@ -84,6 +84,16 @@ export default function({ match }) {
             Apartamento
           </option>
           <option selected={product.category === "Lote"}>Lote</option>
+          <option selected={product.category === "Terreno Rural"}>
+            Terreno Rural
+          </option>
+          <option selected={product.category === "Sitio"}>>Sitio</option>
+          <option selected={product.category === "Chacara"}>>Chacara</option>
+          <option selected={product.category === "Kitnet"}>>Kitnet</option>
+          <option selected={product.category === "Fazenda"}>>Fazenda</option>
+          <option selected={product.category === "Galpão Industrial"}>
+            >Galpão Industrial
+          </option>
         </select>
         <label>Cidade :</label>
         <input
