@@ -156,12 +156,12 @@ export default function Product({ match }) {
         <div className="share">
           Compartilhe:{" "}
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=https://nexoimobiliaria.com.br/product/${product._id}`}
           >
             <img src={fb} alt="whatsapp" className="icon-md" />
           </a>
           <a
-            href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
+            href={`whatsapp://send?text=https://nexoimobiliaria.com.br/product/${product._id}`}
             data-action="share/whatsapp/share"
           >
             <img src={wp} alt="whatsapp" className="icon-md" />
@@ -171,7 +171,6 @@ export default function Product({ match }) {
       <footer>
         <img src={logo} alt="Nexo" className="logo-png" />
         <br />
-        Desenvoldo por Gabriel Rabelo
       </footer>
     </div>
   );
