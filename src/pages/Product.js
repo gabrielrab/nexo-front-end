@@ -54,8 +54,8 @@ export default function Product({ match }) {
           property="og:title"
           content={`Nexo Imobiliaria - ${product.label}`}
         ></meta>
-        <meta property="og:description" content={product.description}></meta>
-        <meta property="og:img" content={product.thumb}></meta>
+        <meta property="og:description" content={product.label}></meta>
+        <meta property="og:image" content={product.thumb}></meta>
       </MetaTags>
       <div className="content">
         <nav className="nav">
