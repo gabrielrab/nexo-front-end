@@ -48,6 +48,22 @@ export default function Product({ match }) {
 
   return (
     <>
+      <Helmet
+        meta={[
+          {
+            property: "og:title",
+            content: `Nexo Imobiliaria - ${product.label}`
+          },
+          {
+            property: "og:description",
+            content: `${product.label}`
+          },
+          {
+            property: "og:image",
+            content: `${product.thumb}`
+          }
+        ]}
+      />
       <Helmet>
         <title>Nexo Imobiliaria | {product.label}</title>
         <meta
