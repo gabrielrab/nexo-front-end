@@ -51,11 +51,20 @@ export default function Product({ match }) {
       <Helmet>
         <title>Nexo Imobiliaria | {product.label}</title>
         <meta
+          data-react-helmet="true"
           property="og:title"
           content={`Nexo Imobiliaria - ${product.label}`}
         ></meta>
-        <meta property="og:description" content={product.label}></meta>
-        <meta property="og:image" content={product.thumb}></meta>
+        <meta
+          data-react-helmet="true"
+          property="og:description"
+          content={product.label}
+        ></meta>
+        <meta
+          data-react-helmet="true"
+          property="og:image"
+          content={product.thumb}
+        ></meta>
       </Helmet>
       <div className="content">
         <nav className="nav">
