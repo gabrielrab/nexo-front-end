@@ -4,7 +4,7 @@ import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
 import ReactMarkdown from "react-markdown";
 import CurrencyInput from "react-currency-format";
-import MetaTags from "react-meta-tags";
+import Helmet from "react-helmet";
 
 import "./Product.css";
 
@@ -48,7 +48,7 @@ export default function Product({ match }) {
 
   return (
     <>
-      <MetaTags>
+      <Helmet>
         <title>Nexo Imobiliaria | {product.label}</title>
         <meta
           property="og:title"
@@ -56,7 +56,7 @@ export default function Product({ match }) {
         ></meta>
         <meta property="og:description" content={product.label}></meta>
         <meta property="og:image" content={product.thumb}></meta>
-      </MetaTags>
+      </Helmet>
       <div className="content">
         <nav className="nav">
           <Link to="/">
