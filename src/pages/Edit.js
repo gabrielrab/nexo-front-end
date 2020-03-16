@@ -94,6 +94,12 @@ export default function({ match }) {
           <option selected={product.category === "Galpão Industrial"}>
             >Galpão Industrial
           </option>
+          <option selected={product.category === "Sala Comercial"}>
+            >Sala Comercial
+          </option>
+          <option selected={product.category === "Loja Comercial"}>
+            >Loja Comercial
+          </option>
         </select>
         <label>Cidade :</label>
         <input

@@ -171,6 +171,8 @@ export default function() {
                 <option>Kitnet</option>
                 <option>Fazenda</option>
                 <option>Galpão Industrial</option>
+                <option>Sala Comercial</option>
+                <option>Loja Comercial</option>
               </select>
             </label>
           </li>
