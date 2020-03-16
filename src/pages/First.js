@@ -22,6 +22,7 @@ export default function() {
   const [original, setOriginal] = useState([]); //recebe os valores da API sem nenhum filtro
   const [products, setProducts] = useState([]); //aqui deve receber os valores após o filtro
   const [apply, setApply] = useState(false);
+  const [fill, setFill] = useState(false);
   const [filters, setFilters] = useState(false);
   const [option, setOption] = useState("+ Filtros");
 
@@ -38,7 +39,7 @@ export default function() {
     const { value, name } = event.target;
     let filtered;
 
-    apply === false
+    fill === false
       ? (filtered = original.filter(
           el => el[name] === value || el[name] === parseInt(value)
         ))
@@ -46,7 +47,7 @@ export default function() {
           el => el[name] === value || el[name] === parseInt(value)
         ));
 
-    //setApply(true);
+    setFill(true);
     await setProducts(filtered);
   }
 
@@ -54,11 +55,11 @@ export default function() {
     const { value, name } = event.target;
 
     let filtered;
-    apply === false
+    fill === false
       ? (filtered = original.filter(el => el[name] === parseInt(value)))
       : (filtered = products.filter(el => el[name] === parseInt(value)));
 
-    // setApply(true);
+    setFill(true);
     await setProducts(filtered);
     debugger;
   }
@@ -69,7 +70,7 @@ export default function() {
 
     let filtered;
 
-    apply === false
+    fill === false
       ? (filtered = original.filter(el => {
           const lc = el[name].toLowerCase();
           const filter = value.toLowerCase();
@@ -81,7 +82,7 @@ export default function() {
           return lc.includes(filter);
         }));
 
-    //setApply(true);
+    setFill(true);
     await setProducts(filtered);
   }
 
@@ -90,11 +91,11 @@ export default function() {
     const { value, name } = event.target;
 
     let filtered;
-    apply === false
+    fill === false
       ? (filtered = original.filter(el => el[name] >= parseInt(value)))
       : (filtered = products.filter(el => el[name] >= parseInt(value)));
 
-    // setApply(true);
+    setFill(true);
     await setProducts(filtered);
   }
 
@@ -164,12 +165,14 @@ export default function() {
                 <option>Casa</option>
                 <option>Apartamento</option>
                 <option>Lote</option>
-                <option value="terreno rural">Terreno Rural</option>
-                <option value="sitio">Sitio</option>
-                <option value="chacara">Chacara</option>
-                <option value="kitnet">Kitnet</option>
-                <option value="fazenda">Fazenda</option>
-                <option value="galpao industrial">Galpão Industrial</option>
+                <option>Terreno Rural</option>
+                <option>Sitio</option>
+                <option>Chacara</option>
+                <option>Kitnet</option>
+                <option>Fazenda</option>
+                <option>Galpão Industrial</option>
+                <option>Sala Comercial</option>
+                <option>Loja Comercial</option>
               </select>
             </label>
           </li>
@@ -340,7 +343,9 @@ export default function() {
                         {product.category === "Lote" ||
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
-                        product.category === "Chacara" ? (
+                        product.category === "Chacara" ||
+                        product.category === "Galpão Industrial" ||
+                        product.category === "Terreno Rural" ? (
                           <>
                             {product.district} - {product.city}
                           </>
@@ -357,7 +362,9 @@ export default function() {
                         {product.category === "Lote" ||
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
-                        product.category === "Chacara" ? (
+                        product.category === "Chacara" ||
+                        product.category === "Galpão Industrial" ||
+                        product.category === "Terreno Rural" ? (
                           <></>
                         ) : (
                           <>
@@ -422,13 +429,13 @@ export default function() {
                 </Link>
                 <span className="share-first">
                   <a
-                    href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
+                    href={`https://www.facebook.com/sharer/sharer.php?u=https://nexoimobiliaria.com.br/product/${product._id}`}
                     target="_self"
                   >
                     <img src={fb} alt="whatsapp" className="icon-md" />
                   </a>
                   <a
-                    href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
+                    href={`whatsapp://send?text=https://nexoimobiliaria.com.br/product/${product._id}`}
                     data-action="share/whatsapp/share"
                   >
                     <img src={wp} alt="whatsapp" className="icon-md" />
@@ -458,7 +465,9 @@ export default function() {
                         {product.category === "Lote" ||
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
-                        product.category === "Chacara" ? (
+                        product.category === "Chacara" ||
+                        product.category === "Galpão Industrial" ||
+                        product.category === "Terreno Rural" ? (
                           <>
                             {product.district} - {product.city}
                           </>
@@ -475,7 +484,9 @@ export default function() {
                         {product.category === "Lote" ||
                         product.category === "Sitio" ||
                         product.category === "Fazenda" ||
-                        product.category === "Chacara" ? (
+                        product.category === "Chacara" ||
+                        product.category === "Galpão Industrial" ||
+                        product.category === "Terreno Rural" ? (
                           <></>
                         ) : (
                           <>
@@ -540,13 +551,13 @@ export default function() {
                 </Link>
                 <span className="share-first">
                   <a
-                    href={`https://www.facebook.com/sharer/sharer.php?u=https://nexo-front.herokuapp.com/product/${product._id}`}
+                    href={`https://www.facebook.com/sharer/sharer.php?u=https://nexoimobiliaria.com.br/product/${product._id}`}
                     target="_self"
                   >
                     <img src={fb} alt="whatsapp" className="icon-md" />
                   </a>
                   <a
-                    href={`whatsapp://send?text=https://nexo-front.herokuapp.com/product/${product._id}`}
+                    href={`whatsapp://send?text=https://nexoimobiliaria.com.br/product/${product._id}`}
                     data-action="share/whatsapp/share"
                   >
                     <img src={wp} alt="whatsapp" className="icon-md" />
@@ -557,11 +568,8 @@ export default function() {
           </>
         ) : (
           <div className="empty">
-            Aguarde,
+            IMÓVEL NÃO ENCONTRADO! REDEFINA A BUSCA
             <br />
-            <p>
-              ou tente <a href="/busca">redefinir busca</a>
-            </p>
           </div>
         )}
       </div>
